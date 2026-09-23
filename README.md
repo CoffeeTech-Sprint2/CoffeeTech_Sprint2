@@ -4,7 +4,7 @@
 
 > \*\*Projeto de Inovação (PI)\*\* — 1º Semestre de Análise e Desenvolvimento de Sistemas (ADS)  
 
-> \*\*Faculdade:\*\* SPTech (São Paulo Tech School) — Turma 1ADSA (Grupo 9)
+> \*\*Faculdade:\*\* SPTech (São Paulo Tech School) — Turma 1ADSA (Grupo 4)
 
 
 
@@ -88,7 +88,7 @@ O sistema faz a leitura analógica do sensor, converte os dados em porcentagem d
 
 
 
-\## 👥 Integrantes (Grupo 9 - Turma 1ADSA)
+\## 👥 Integrantes (Grupo 4 - Turma 1ADSA)
 
 
 
