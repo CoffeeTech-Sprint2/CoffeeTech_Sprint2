@@ -53,7 +53,7 @@ create table manutencao(
 idManutencao int,
 fkSensor int unique,
 dataInstalacao datetime,
-ultimaManutencao datetime,
+dtManutencao datetime,
 CONSTRAINT pkComposta primary key(idManutencao, fkSensor),
 CONSTRAINT fkSensorManutencao foreign key (fkSensor) references sensor(idSensor)
 );
