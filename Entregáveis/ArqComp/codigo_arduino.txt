@@ -1,0 +1,35 @@
+// parte 1: essa parte serve para calibrar os valores da água e do ar
+const int ValorAr     = 550; // leitura no ar (valor de calibração)
+const int ValorAgua   = 230; // leitura na água (valor de calibração)
+
+// parte 2: essa parte define o formato de cada variável
+//int: numero inteiro
+// float: numero com virgula
+int valorUmidadeSolo = 0;
+float porcentagemUmidade = 0;
+
+// parte 3: comando para inicialização do arduino
+// é utilizado (9600) pois é o valor de baud rate (valor de leitura (9600 bits/segundo)
+// utilizado também na API, deve ser o mesmo no computador e na placa)
+
+void setup(){
+  Serial.begin (9600);
+}
+// parte 4: bloco que executa o código enquanto a placa estiver ligada (por isso o "loop")
+void loop (){
+  valorUmidadeSolo = analogRead(A2); // trocar A2 pela porta que está o arduino
+
+  int faixa = ValorAr - ValorAgua; // cálculo do valor mais seco (ar) pro valor mais molhado (água)
+  int distancia = ValorAr - valorUmidadeSolo; // cálculo de quanto o ar deslocou entre o valor mais seco (quanto mais longe do seco, mais úmido tá) 
+
+  porcentagemUmidade = (float)distancia / faixa * 100.0; // cálculo da porcentagem da umidade (unidade float)
+
+  if (porcentagemUmidade < 0)   porcentagemUmidade = 0;
+  if (porcentagemUmidade > 100)  porcentagemUmidade = 100;
+
+// parte 5: bloco de código que mostra o código para nós
+  Serial.println(porcentagemUmidade); // utilizamos apenas porcentagemUmidade por ser o valor que nos interessa, 
+  // o outro é de resistencia e nao iremos utilizar no projeto
+  delay(1000); // os dados são "printados" de 10 em 10 segundos  
+
+}
