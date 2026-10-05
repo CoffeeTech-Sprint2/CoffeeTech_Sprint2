@@ -28,8 +28,10 @@ void loop (){
   if (porcentagemUmidade > 100)  porcentagemUmidade = 100;
 
 // parte 5: bloco de código que mostra o código para nós
-  Serial.println(porcentagemUmidade); // utilizamos apenas porcentagemUmidade por ser o valor que nos interessa, 
-  // o outro é de resistencia e nao iremos utilizar no projeto
+  Serial.print (1);
+  Serial.print (";");
+  Serial.println(porcentagemUmidade); // utilizamos apenas porcentagemUmidade por ser o valor que nos interessa
+
   delay(1000); // os dados são "printados" de 10 em 10 segundos  
 
 }
