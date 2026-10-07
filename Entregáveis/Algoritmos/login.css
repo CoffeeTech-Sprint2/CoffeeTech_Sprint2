@@ -15,6 +15,10 @@ h1 {
   color: #12261d;
 }
 
+.titulo-login {
+  margin-top: 20px;
+}
+
 p {
   color: #7d8577;
   margin: 8px 0 28px;
@@ -22,7 +26,7 @@ p {
 
 main {
   background: white;
-  max-width: 580px;
+  max-width: 400px;
   margin: auto;
   padding: 32px;
   border: 1px solid #efe3d0;
@@ -33,7 +37,8 @@ main {
 main label {
   display: block;
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #6f7b72;
@@ -42,7 +47,7 @@ main label {
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  height: 56px;
+  height: 46px;
   padding: 0 20px;
   margin-bottom: 20px;
   font-family: inherit;
@@ -101,10 +106,38 @@ button {
   text-align: center;
 }
 
-.possui-conta {
+.cadastro a {
+  color: white;
+  font-weight: 500;
+}
+
+.lembrar-acesso {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.lembrar-acesso input {
+  margin: 0;
+}
+.lembrar-acesso label {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: normal;
+}
+.btn-entrar {
+  background-color: #1c3d2b;
+  color: #f4ede0;
+}
+.btn-entrar:hover {
+  background-color: #2d5c41;
+}
+
+.sem-conta {
   margin: 24px 0;
 }
-.possui-conta a {
+.sem-conta a {
   color: #12261d;
   font-weight: 600;
 }

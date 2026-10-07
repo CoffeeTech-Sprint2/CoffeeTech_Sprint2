@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>CoffeeTech | Login</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="div-logo">
+        <img
+          src="./Lógica de cadastro/img/logo-coffetech.png"
+          alt="logo coffee tech"
+          class="logo"
+        />
+        <h1 class="titulo">Coffee Tech</h1>
+      </div>
+
+      <nav class="nav">
+        <ul class="menu">
+          <li>Início</li>
+          <li>Sobre</li>
+          <li>Como Funciona</li>
+          <li>Calculadora</li>
+          <li>Dashboard</li>
+        </ul>
+
+        <div class="menu-login">
+          <span class="login">Login</span>
+          <span class="cadastro"><a href="cadastro.html">Cadastro</a></span>
+        </div>
+      </nav>
+    </header>
+
+    <h1 class="titulo-login">Bem-vindo de volta</h1>
+    <p>Acesse o monitoramento da sua propriedade</p>
+
+    <main>
+      <label>E-MAIL</label>
+      <input
+        type="text"
+        id="ipt_email"
+        placeholder="produtor@cafeicultura.com.br"
+      />
+
+      <label>SENHA</label>
+      <input type="password" id="ipt_senha" placeholder="*******" />
+
+      <div class="lembrar-acesso">
+        <input type="checkbox" />
+        <label>Lembrar acesso</label>
+      </div>
+
+      <button onclick="validarCampos()" class="btn-entrar">Entrar</button>
+
+      <div id="div_exibir"></div>
+    </main>
+
+    <p class="sem-conta">
+      Ainda não tem conta? <a href="cadastro.html">Criar conta gratuita</a>
+    </p>
+
+    <footer class="footer">
+      <nav class="nav-footer">
+        <div class="container-logo">
+          <picture>
+            <img
+              src="./Lógica de cadastro/img/logo-coffetech3.png"
+              alt="logo coffee tech"
+              class="footer-logo"
+            />
+            <h4 class="footer-titulo">Coffee Tech</h4>
+          </picture>
+
+          <p>
+            Monitoramento inteligente de umidade do solo para produtores de café
+            Arábica.
+          </p>
+        </div>
+
+        <div class="footer-menu">
+          <h4 class="footer-titulo">Navegação</h4>
+
+          <ul>
+            <li>inicio</li>
+            <li>sobre</li>
+            <li>como funciona</li>
+            <li>calculadora</li>
+            <li>dashboard</li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="dev-info">
+        <h4>Desenvolvedores</h4>
+        <p class="desenvolvedores">
+          Arthur Lima dos Santos, Bruno Volpe Costa, Guilherme de Sousa
+          Pinheiro, Julia Carolina Brito dos Santos, Mathes de Souza Menino,
+          Nataly Rufino Pereira Gutierrez e Vinicius Augusto Alves de Almeida.
+        </p>
+      </div>
+      <p class="footer-copy">2026 Coffee Tech. Protótipo institucional.</p>
+    </footer>
+  </body>
+</html>
