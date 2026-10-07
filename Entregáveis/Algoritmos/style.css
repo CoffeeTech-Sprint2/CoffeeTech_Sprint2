@@ -1,94 +1,188 @@
-.header{
+/* HEADER */
+
+.header {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
-    flex-direction: row;
     align-items: center;
-    height: 60px;
     width: 100%;
-    background-color: rgb(94, 73,52);
+    height: 70px;
+    padding: 0 150px;
     box-sizing: border-box;
+    background-color: rgb(89, 67, 44);
 }
 
-.nav{
-    display: flex;  
-    width: 65%;
-    justify-content: space-between;
-}
-
-.div_logo{
+.div-logo {
     display: flex;
-    width: 20%;
+    align-items: center;
+    gap: 10px;
 }
 
-
-.menu{
-    display: flex;
-    flex-direction: row;
-    width: 60%;
-    justify-content: space-between;
-    align-content: center;
-    margin-left: 15%;
-
-}
-.menu ul{
-    display: flex;
-    justify-content: space-between; 
+.logo {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
 }
 
-.menu li{
-    padding: 7px;
-}
-
-.menu-login{
-    display: flex;
-    width: 20%;
-    justify-content: space-between;
-}
-
-.titulo{
+.titulo {
     color: aliceblue;
+    font-size: 20px;
 }
 
-.menu li{
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    padding: 7px;
     color: rgb(190, 189, 189);
+    transition: 0.2s;
 }
 
-.menu li:first-child{
+.menu li:first-child {
     color: #ffffff;
 }
 
-.menu li:hover{
+.menu li:hover {
     color: rgb(250, 248, 248);
-    transition: 0.2s;
     cursor: pointer;
 }
 
-.menu-login .login{
+.menu-login {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.menu-login .login {
     color: rgb(190, 189, 189);
     border: solid 1px;
     border-radius: 5px;
     padding: 7px 15px;
-
-}
-
-.menu-login .login:hover{
-    color: #ffffff;
     transition: 0.2s;
-    cursor: pointer;
-
 }
 
-.menu-login .cadastro{
+.menu-login .login:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.menu-login .cadastro {
     background-color: rgb(104, 34, 2);
     border-radius: 5px;
     padding: 7px 15px;
     color: #ffffff;
+    transition: 0.2s;
 }
 
-.menu-login .cadastro:hover{
+.menu-login .cadastro:hover {
     background-color: rgb(158, 51, 1);
+    cursor: pointer;
+}
+
+
+/* FOOTER */
+
+.footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(89, 67, 44);
+    padding: 100px;
+    width: auto;
+    height: auto;
+}
+
+.container-logo{
+    display: flex;
+    flex-direction: column;
+}
+
+.container-logo img{
+    height: 35px;
+    width: auto;
+    border-radius: 50%;
+}
+
+.footer-titulo{
     color: #ffffff;
+}
+
+.container-logo p{
+    color: #ffffff;
+    opacity: 40%;
+}
+
+.container-logo picture{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* NAV FOOTER */
+
+.nav-footer .footer-titulo{
+    color: #ffffff;
+    opacity: 50%;
+}
+
+.nav-footer{
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    width: 50%;
+    justify-content: space-evenly;
+}
+
+.nav-footer ul{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav-footer ul li{
+    color: #ffffff;
+    opacity: 50%;
+}
+
+.nav-footer ul li:hover{
+    color: #ffffff;
+    opacity: 100%;
     cursor: pointer;
     transition: 0.2s;
 }
+
+/* FOOTER MENU */
+.footer-menu{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* DEV INFO */
+
+.dev-info{
+    width: 50%;
+}
+
+.dev-info .desenvolvedores{
+    color: #ffffff;
+    opacity: 50%;
+}
+
+.dev-info h4{
+    color: #ffffff;
+    opacity: 50%;
+}
+
+
