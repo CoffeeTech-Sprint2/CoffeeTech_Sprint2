@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+
+body {
+  font-family: "Outfit", system-ui, sans-serif;
+  background: #f5ece0;
+  padding: 0;
+  margin: 0;
+}
+
+
+.titulo{
+    font-family: "DM Serif Display", Georgia, serif;
+    font-weight: 100;
+}
+.home {
+  min-height: 100vh;
+  background-image:
+    linear-gradient(
+      to top,
+      rgba(17, 37, 25, 1),
+      rgba(17, 37, 25, 0.6),
+      transparent
+    ),
+    url("https://images.unsplash.com/photo-1746367805612-bc46ff00bf9a?w=1600&h=900&fit=crop&auto=format");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  align-items: flex-end;
+  display: flex;
+  padding: 75px;
+}
+
+.bloco-esquerda {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  color: aliceblue;
+  gap: 20px;
+}
+.bloco-esquerda h1 {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 65px;
+  color: #f4ede0;
+}
+
+
+.descricao-home p{
+    font-size: 20px;
+    width: 85%;
+    font-weight: 200px;
+    color: #f4ede096;;
+    margin-bottom: 7.5%;
+}
+.btn-sobre{
+    background-color: #2d5c41;
+    width: 15%;
+    padding: 16px;
+    border: 0.2px solid #2d5c41;
+    border-radius: 5px;
+    font-family:  "Outfit", sans-serif;
+    font-weight: 500;
+}
+.btn-sobre a{
+    color: white;
+    font-size: 16px;
+}
+
+.btn-comofunciona{
+    width: 30%;
+    padding: 16px;
+    border: 1px solid #f4ede096;
+    border-radius: 5px;
+    margin-left: 2%;
+}
+
+.btn-comofunciona a{
+    color: #f4ede096;
+}
+
+.bloco-direita{
+    display: flex;
+    gap: 10px;
+    flex: 1;
+}
+
+.bloco-direita .monitoramento{
+    border: 0.5px solid #f4ede096;
+    border-radius: 10px;
+    padding: 15px;
+    width: 50%;
+}
+
+.bloco-direita .monitoramento h2,p{
+    color: rgba(255, 255, 255, 0.76);
+}
+
+.bloco-direita .dados{
+    border: 0.5px solid #f4ede096;
+    border-radius: 10px;
+    padding: 15px;
+    width: 50%;
+}
+
+.bloco-direita .dados h2,p{
+    color: rgba(255, 255, 255, 0.76);
+}
+
+.subtitulo-home p {
+    color: #f4ede096;
+}

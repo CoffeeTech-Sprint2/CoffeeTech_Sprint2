@@ -1,72 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Coffee Tech</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="home.css">
+  </head>
+  <body>
     <header class="header">
+      <div class="div-logo">
+        <img
+          src="./Lógica de cadastro/img/logo-coffetech3.png"
+          alt="logo coffee tech"
+          class="logo"
+        />
+        <h1 class="titulo">Coffee Tech</h1>
+      </div>
 
-        <div class="div-logo">
-            <img src="./Lógica de cadastro/img/logo-coffetech3.png" alt="logo coffee tech" class="logo">
-            <h1 class="titulo">Coffee Tech</h1>
+      <nav class="nav">
+        <ul class="menu">
+          <li><a href="home.html">Início</a></li>
+          <li>Sobre</li>
+          <li>Como Funciona</li>
+          <li>Calculadora</li>
+          <li>Dashboard</li>
+        </ul>
+
+        <div class="menu-login">
+          <span class="login"><a href="login.html">Login</a></span>
+          <span class="cadastro"><a href="cadastro.html">Cadastro</a></span>
         </div>
-
-        <nav class="nav">
-            <ul class="menu">
-                <li>Início</li>
-                <li>Sobre</li>
-                <li>Como Funciona</li>
-                <li>Calculadora</li>
-                <li>Dashboard</li>
-            </ul>
-
-            <div class="menu-login">
-                <span class="login">Login</span>
-                <span class="cadastro">Cadastro</span>
-            </div>
-        </nav>
+      </nav>
     </header>
 
+    <main class="home">
+        <div class="bloco-esquerda">
+            <div class="subtitulo-home"> 
+                <p>Monitoramento · Solo · Café Arábica</p>
+            </div>
+            <div>
+                <h1>Tecnologia que transforma dados do solo em decisões mais inteligentes.</h1>
+            </div>
+            <div class="descricao-home">
+                <p>O CoffeTech usa sensores capacitivos e Arduino para monitorar a umidade do solo em tempo real — ajudando produtores a irrigar no momento certo, reduzindo desperdício e aumentando a eficiência.</p>
+
+                <button class="btn-sobre"><a href="#">Sobre</a></button>
+                <span class="btn-comofunciona"><a href="#">Como funciona</a></span>
+            </div>
+
+            
+        </div>
+
+        <div class="bloco-direita">  
+            <div class="monitoramento">
+                <h2>24/7</h2>
+                <p>Monitoramento contínuo</p>
+            </div>
+
+            <div class="dados">
+                <h2>Real-time</h2>
+                <p>Dados na palma da mão</p>
+            </div>
+        </div>
+    </main>
+
     <footer class="footer">
+      <nav class="nav-footer">
+        <div class="container-logo">
+          <picture>
+            <img
+              src="./Lógica de cadastro/img/logo-coffetech3.png"
+              alt="logo coffee tech"
+              class="footer-logo"
+            />
+            <h4 class="footer-titulo">Coffee Tech</h4>
+          </picture>
 
-        <nav class="nav-footer">
-
-            <div class="container-logo">
-
-            <picture>
-                <img src="./Lógica de cadastro/img/logo-coffetech3.png" alt="logo coffee tech" class="footer-logo">
-                <h4 class="footer-titulo">Coffee Tech</h4>
-            </picture>
-
-            <p>Monitoramento inteligente de umidade do solo para produtores de café Arábica.</p>
-
+          <p>
+            Monitoramento inteligente de umidade do solo para produtores de café
+            Arábica.
+          </p>
         </div>
 
         <div class="footer-menu">
-            <h4 class="footer-titulo">Navegação</h4>
+          <h4 class="footer-titulo">Navegação</h4>
 
-            <ul>
-                <li>inicio</li>
-                <li>sobre</li>
-                <li>como funciona</li>
-                <li>calculadora</li>
-                <li>dashboard</li>
-            </ul>
+          <ul>
+            <li>inicio</li>
+            <li>sobre</li>
+            <li>como funciona</li>
+            <li>calculadora</li>
+            <li>dashboard</li>
+          </ul>
         </div>
-            
+      </nav>
 
-        </nav>
-
-        <div class="dev-info">
-
-            <h4>Desenvolvedores</h4>
-            <p class="desenvolvedores">Arthur Lima dos Santos, Bruno Volpe Costa, Guilherme de Sousa Pinheiro, Julia Carolina Brito dos Santos, Mathes de Souza Menino, Nataly Rufino Pereira Gutierrez e Vinicius Augusto Alves de Almeida.</p>
-
-        </div>
+      <div class="dev-info">
+        <h4>Desenvolvedores</h4>
+        <p class="desenvolvedores">
+          Arthur Lima dos Santos, Bruno Volpe Costa, Guilherme de Sousa
+          Pinheiro, Julia Carolina Brito dos Santos, Mathes de Souza Menino,
+          Nataly Rufino Pereira Gutierrez e Vinicius Augusto Alves de Almeida.
+        </p>
+      </div>
     </footer>
-</body>
+  </body>
 </html>
