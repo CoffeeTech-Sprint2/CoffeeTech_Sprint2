@@ -33,7 +33,7 @@ main {
 main label {
   display: block;
   margin-bottom: 8px;
-  font-size: 14px;
+  font-size: 12px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #6f7b72;
@@ -42,7 +42,7 @@ main label {
 input[type="text"],
 input[type="password"] {
   width: 100%;
-  height: 56px;
+  height: 46px;
   padding: 0 20px;
   margin-bottom: 20px;
   font-family: inherit;
