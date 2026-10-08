@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculadora financeira</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Calculadora financeira</h1>
+
+        <p><small id="nota_referencia"></small></p>
+
+        <h3>Dados da Irrigação</h3>
+
+        <p>Valor gasto por mês com água (R$)</p>
+        <input type="text" id="ipt_valorAgua" placeholder="Ex: 40000">
+
+        <p>Quantas vezes irriga no mês</p>
+        <input type="text" id="ipt_vezes" placeholder="Ex: 4 vezes">
+
+        <h3>Dados da Produção</h3>
+
+        <p>Sacas produzidas por ano</p>
+        <input type="text" id="ipt_sacas" placeholder="Ex: 600 sacas"><br>
+
+        <br>
+
+        <button onclick="calcular()">Calcular</button>
+
+        <div id="resultado"></div>
+
+    </div>
+
+    <script>
+
+        // =====================================================
+        // VALORES DE REFERÊNCIA (ajustáveis apenas aqui)
+        // =====================================================
+        const REFERENCIA = {
+            valorSaca: 1600.00,            // R$ por saca de 60 kg de café arábica
+            dataCotacao: '24/08/2026',
+            economiaAguaPercentual: 30,    // % de economia de água estimada com o sensor
+            perdaSemSensor: 0.30,          // 30% de perda estimada sem monitoramento
+            perdaComSensor: 0.05,          // 5% de perda estimada com monitoramento
+            mesesPorAno: 12
+        };
+
+        // =====================================================
+        // FUNÇÕES AUXILIARES
+        // =====================================================
+        function moeda(valor) {
+            return `R$ ${valor.toFixed(2)}`;
+        }
+
+        function percentual(fracao) {
+            return `${(fracao * 100).toFixed(0)}%`;
+        }
+
+        // =====================================================
+        // ENTRADAS
+        // =====================================================
+        function lerEntradas() {
+            return {
+                valorAguaMes: Number(ipt_valorAgua.value),
+                sacas: Number(ipt_sacas.value)
+                // ipt_vezes ainda não é usado em nenhum cálculo
+            };
+        }
+
+        // =====================================================
+        // CÁLCULOS
+        // =====================================================
+        function calcularEconomiaAgua(valorAguaMes) {
+            const porMes = valorAguaMes * (REFERENCIA.economiaAguaPercentual / 100);
+            const porAno = porMes * REFERENCIA.mesesPorAno;
+            return { porMes, porAno };
+        }
+
+        function calcularGanhoProducao(sacas) {
+            const { valorSaca, perdaSemSensor, perdaComSensor } = REFERENCIA;
+
+            const sacasPerdidasSemSensor = sacas * perdaSemSensor;
+            const sacasPerdidasComSensor = sacas * perdaComSensor;
+            const sacasRecuperadas = sacasPerdidasSemSensor - sacasPerdidasComSensor;
+
+            return {
+                valorRecuperado: sacasRecuperadas * valorSaca,
+                valorProducaoComSensor: (sacas - sacasPerdidasComSensor) * valorSaca
+            };
+        }
+
+        // =====================================================
+        // EXIBIÇÃO
+        // =====================================================
+        function montarResultado(entradas, agua, producao, beneficioTotalAno) {
+            const { perdaSemSensor, perdaComSensor, economiaAguaPercentual } = REFERENCIA;
+
+            return `
+
+            <br><h2>Economia com Irrigação Inteligente</h2><br>
+
+            <small>Essa economia é calculada sobre o valor que você informou gastar hoje por mês com água (${moeda(entradas.valorAguaMes)}), aplicando um percentual médio de redução de consumo de ${economiaAguaPercentual}%, estimado a partir do uso do sensor de umidade do solo, que evita irrigações desnecessárias ao identificar o momento exato em que a planta precisa de água.</small><br><br>
+
+            Economia de água por mês: ${moeda(agua.porMes)}<br><br>
+
+            Economia de água por ano: ${moeda(agua.porAno)}<br><br>
+
+            <h2>Ganho na Produção</h2><br>
+
+            <small>Os percentuais abaixo (${percentual(perdaSemSensor)} sem sensor e ${percentual(perdaComSensor)} com sensor) são valores fixos, definidos com base em nossas pesquisas e documentação técnica sobre perdas de safra relacionadas a manejo inadequado de irrigação.</small><br><br>
+
+            Perda estimada sem sensor: ${percentual(perdaSemSensor)}<br><br>
+
+            Perda estimada com sensor: ${percentual(perdaComSensor)}<br><br>
+
+            <small>O valor recuperado é a diferença de produção que deixa de se perder graças à redução da perda (de ${percentual(perdaSemSensor)} para ${percentual(perdaComSensor)}), convertida em reais pelo valor da saca de café arábica.</small><br><br>
+
+            Valor recuperado com produção no ano: ${moeda(producao.valorRecuperado)}<br><br>
+
+            Valor total da produção com sensor no ano: ${moeda(producao.valorProducaoComSensor)}<br><br>
+
+            <h2>Benefício Total Estimado (por ano)</h2><br>
+
+            <small>Esse total soma apenas a economia operacional estimada (água + produção recuperada). Ele não inclui o custo de instalação ou aquisição do sensor — representa o ganho financeiro recorrente ao longo de um ano de uso.</small><br><br>
+
+            Economia com água: ${moeda(agua.porAno)}<br><br>
+
+            Ganhos totais com as sacas no ano: ${moeda(producao.valorRecuperado)}<br><br>
+
+            <strong>Total economizado: ${moeda(beneficioTotalAno)}</strong>
+
+            `;
+        }
+
+        // =====================================================
+        // FLUXO PRINCIPAL
+        // =====================================================
+        function calcular() {
+            const entradas = lerEntradas();
+
+            const agua = calcularEconomiaAgua(entradas.valorAguaMes);
+            const producao = calcularGanhoProducao(entradas.sacas);
+            const beneficioTotalAno = agua.porAno + producao.valorRecuperado;
+
+            resultado.innerHTML = montarResultado(entradas, agua, producao, beneficioTotalAno);
+        }
+
+        // Nota de referência exibida no topo da página
+        nota_referencia.textContent =
+            `Valor de referência utilizado: ${REFERENCIA.valorSaca.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} por saca (60kg) de café arábica — cotação vista em ${REFERENCIA.dataCotacao}.`;
+
+    </script>
+
+</body>
+
+</html>
