@@ -1,71 +1,154 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/css/reset.css" />
+    <link rel="stylesheet" href="src/css/style.css" />
+    <link rel="stylesheet" href="./src/css/calculadora.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <title>Calculadora financeira</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <header class="header">
+      <div class="div-logo">
+        <img
+          src="./Lógica de cadastro/img/logo-coffetech3.png"
+          alt="logo coffee tech"
+          class="logo"
+        />
+        <h1 class="titulo">Coffee Tech</h1>
+      </div>
 
-    <div class="container">
+      <nav class="nav">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="">Como Funciona</a></li>
+          <li><a href="#">Calculadora</a></li>
+          <li><a href="#">Dashboard</a></li>
+        </ul>
 
-        <h1>Calculadora financeira</h1>
+        <div class="menu-login">
+          <span class="login"><a href="./login.html">Login</a></span>
+          <span class="cadastro">Cadastro</span>
+        </div>
+      </nav>
+    </header>
 
-        <p><small>Valor de referência utilizado: R$ 1.803,73 por saca (60kg) de café arábica — cotação vista em 24/08/2026.</small></p>
-
-        <h3>Dados da Irrigação</h3>
-
-        <p>Valor gasto por mês com água (R$)</p>
-        <input type="text" id="ipt_valorAgua" placeholder="Ex: 40000">
-
-        <p>Quantas vezes irriga no mês</p>
-        <input type="text" id="ipt_vezes" placeholder="Ex: 4 vezes">
-
-        <h3>Dados da Produção</h3>
-
-        <p>Sacas produzidas por ano</p>
-        <input type="text" id="ipt_sacas" placeholder="Ex: 600 sacas"><br>
-
-        <br>
-
-        <button onclick="calcular()">Calcular</button>
-
-        <div id="resultado"></div>
-
+    <div class="titulo-calculadora">
+      <p>CALCULADORA DE RETORNO</p>
+      <h2>Qual é o retorno para a sua propriedade?</h2>
+      <p>
+        Insira os dados da sua plantação e veja a estimativa de receita e
+        economia com o monitoramento inteligente.
+      </p>
     </div>
 
-</body>
+    <div class="container-calculadora">
+      <div class="bloco-info">
+        <label for="ipt_valorAgua">VALOR GASTO COM ÁGUA POR MÊS (R$)</label
+        ><br />
+        <input type="text" id="ipt_valorAgua" placeholder="Ex: 4000" /><br />
 
-<script>
+        <label for="ipt_vezes">QUANTAS VEZES IRRIGA NO MÊS</label><br />
+        <input type="text" id="ipt_vezes" placeholder="Ex: 4 vezes" /><br />
 
+        <label for="ipt_sacas">SACAS PRODUZIDAS POR ANO</label><br />
+        <input type="text" id="ipt_sacas" placeholder="Ex: 600 sacas" /><br />
+
+        <label for="ipt_area">TAMANHO DA ÁREA (Hectares)</label><br />
+        <input type="text" id="ipt_area" placeholder="Ex: 10" /><br />
+
+        <br />
+
+        <button class="btn-calcular">Calcular estimativa</button>
+      </div>
+
+      <div class="bloco-resultado" id="resultado">
+        <div class="card-resultado card-verde">
+          <div class="card-label">Sua estimativa</div>
+          <div class="card-nota">
+            Preencha os dados ao lado e clique em calcular para ver o retorno.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <nav class="nav-footer">
+        <div class="container-logo">
+          <picture>
+            <img
+              src="./Lógica de cadastro/img/logo-coffetech3.png"
+              alt="logo coffee tech"
+              class="footer-logo"
+            />
+            <h4 class="footer-titulo">Coffee Tech</h4>
+          </picture>
+
+          <p>
+            Monitoramento inteligente de umidade do solo para produtores de café
+            Arábica.
+          </p>
+        </div>
+
+        <div class="footer-menu">
+          <h4 class="footer-titulo">Navegação</h4>
+
+          <ul>
+            <li>inicio</li>
+            <li>sobre</li>
+            <li>como funciona</li>
+            <li>calculadora</li>
+            <li>dashboard</li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="dev-info">
+        <h4>Desenvolvedores</h4>
+        <p class="desenvolvedores">
+          Arthur Lima dos Santos, Bruno Volpe Costa, Guilherme de Sousa
+          Pinheiro, Julia Carolina Brito dos Santos, Mathes de Souza Menino,
+          Nataly Rufino Pereira Gutierrez e Vinicius Augusto Alves de Almeida.
+        </p>
+      </div>
+      <p class="footer-copy">2026 Coffee Tech. Protótipo institucional.</p>
+    </footer>
+  </body>
+
+  <script>
     function calcular() {
+      // --- Dados de entrada ---
+      let valorAguaMes = Number(ipt_valorAgua.value);
+      let sacas = Number(ipt_sacas.value);
 
-        // --- Dados de entrada ---
-        let valorAguaMes = Number(ipt_valorAgua.value);
-        let sacas = Number(ipt_sacas.value);
+      // --- Valores de referência (exemplo, ajustáveis apenas aqui no código) ---
+      let economiaPercentual = 30; // % de economia de água estimada com o sensor
+      let valorSaca = 1803.73;
+      let perdaSemSensor = 0.3; // 30% de perda estimada sem monitoramento (com base em pesquisas e documentação)
+      let perdaComSensor = 0.05; // 5% de perda estimada com monitoramento (com base em pesquisas e documentação)
 
-        // --- Valores de referência (exemplo, ajustáveis apenas aqui no código) ---
-        let economiaPercentual = 30; // % de economia de água estimada com o sensor
-        let valorSaca = 1803.73;
-        let perdaSemSensor = 0.30; // 30% de perda estimada sem monitoramento (com base em pesquisas e documentação)
-        let perdaComSensor = 0.05; // 5% de perda estimada com monitoramento (com base em pesquisas e documentação)
+      // --- Cálculo da economia de água ---
+      let economiaAguaMes = valorAguaMes * (economiaPercentual / 100);
+      let economiaAguaAno = economiaAguaMes * 12;
 
-        // --- Cálculo da economia de água ---
-        let economiaAguaMes = valorAguaMes * (economiaPercentual / 100);
-        let economiaAguaAno = economiaAguaMes * 12;
+      // --- Cálculo da redução de perda de safra ---
+      let sacasPerdidasSemSensor = sacas * perdaSemSensor;
+      let sacasPerdidasComSensor = sacas * perdaComSensor;
+      let sacasRecuperadas = sacasPerdidasSemSensor - sacasPerdidasComSensor;
+      let valorRecuperado = sacasRecuperadas * valorSaca;
+      let valorProducaoComSensor = (sacas - sacasPerdidasComSensor) * valorSaca;
 
-        // --- Cálculo da redução de perda de safra ---
-        let sacasPerdidasSemSensor = sacas * perdaSemSensor;
-        let sacasPerdidasComSensor = sacas * perdaComSensor;
-        let sacasRecuperadas = sacasPerdidasSemSensor - sacasPerdidasComSensor;
-        let valorRecuperado = sacasRecuperadas * valorSaca;
-        let valorProducaoComSensor = (sacas - sacasPerdidasComSensor) * valorSaca;
+      // --- Benefício total estimado ---
+      let beneficioTotalAno = economiaAguaAno + valorRecuperado;
 
-        // --- Benefício total estimado ---
-        let beneficioTotalAno = economiaAguaAno + valorRecuperado;
-
-        resultado.innerHTML = `
+      resultado.innerHTML = `
 
         <br><h2>Economia com Irrigação Inteligente</h2><br>
 
@@ -101,7 +184,5 @@
 
         `;
     }
-
-</script>
-
+  </script>
 </html>

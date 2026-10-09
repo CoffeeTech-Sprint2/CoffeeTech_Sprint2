@@ -18,19 +18,19 @@
   <body>
     <header class="header">
       <div class="div-logo">
-        <img
-          src="./Lógica de cadastro/img/logo-coffetech3.png"
+        <a href="index.html"><img
+          src="../../img/logo.png"
           alt="logo coffee tech"
           class="logo"
-        />
-        <h1 class="titulo">Coffee Tech</h1>
+        /></a>
+        <h1 class="titulo"><a href="index.html">Coffee Tech</a></h1>
       </div>
 
       <nav class="nav">
         <ul class="menu">
           <li><a href="index.html">Início</a></li>
-          <li><a href="#">Sobre</a></li>
-          <li><a href="">Como Funciona</a></li>
+          <li><a href="index.html#secaoSobre">Sobre</a></li>
+          <li><a href="index.html#secaoComoFunciona">Como Funciona</a></li>
           <li><a href="#">Calculadora</a></li>
           <li><a href="#">Dashboard</a></li>
         </ul>
@@ -74,13 +74,6 @@
           <label>Telefone</label>
           <input type="text" id="ipt_telefone" placeholder="(00) 0000-0000" />
         </div>
-      </div>
-
-      <label>Contato de preferência</label>
-      <div id="opcoes">
-        <label><input type="radio" name="preferencia" /> E-mail</label>
-        <label><input type="radio" name="preferencia" /> Celular</label>
-        <label><input type="radio" name="preferencia" /> Telefone</label>
       </div>
 
       <button onclick="validarCampos()">Cadastrar</button>
