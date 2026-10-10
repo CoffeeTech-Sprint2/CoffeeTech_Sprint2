@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Tech</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="div-logo">
+          <a href="#"><img
+            src="img/logo.png"
+            alt="logo coffee tech"
+            class="logo"
+          /></a>
+        <h1 class="titulo"><a href="#">Coffee Tech</a></h1>
+      </div>
+
+      <nav class="nav">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="#secaoSobre">Sobre</a></li>
+          <li><a href="#secaoComoFunciona">Como Funciona</a></li>
+          <li><a href="calculadora.html">Calculadora</a></li>
+         <li><a href="dashboard.html">Dashboard</a></li> 
+        </ul> 
+
+        <div class="menu-login">
+          <span class="login"><a href="login.html">Login</a></span>
+          <span class="cadastro"><a href="cadastro.html">Cadastro</a></span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="home" id="secaoHome">
+      <div class="bloco-esquerda">
+        <div class="subtitulo-home">
+          <p>Monitoramento · Solo · Café Arábica</p>
+        </div>
+        <div>
+          <h1>
+            Tecnologia que transforma dados do solo em decisões mais
+            inteligentes.
+          </h1>
+        </div>
+        <div class="descricao-home">
+          <p>
+            O CoffeTech usa sensores capacitivos e Arduino para monitorar a
+            umidade do solo em tempo real — ajudando produtores a irrigar no
+            momento certo, reduzindo desperdício e aumentando a eficiência.
+          </p>
+
+          <button class="btn-sobre"><a href="#">Sobre</a></button>
+          <span class="btn-comofunciona"><a href="#">Como funciona</a></span>
+        </div>
+      </div>
+
+      <div class="bloco-direita">
+        <div class="monitoramento">
+          <h2>24/7</h2>
+          <p>Monitoramento contínuo</p>
+        </div>
+
+        <div class="dados">
+          <h2>Real-time</h2>
+          <p>Dados na palma da mão</p>
+        </div>
+      </div>
+    </main>
+
+    <section class="sobre" id="secaoSobre">
+      <div class="sobre-info">
+        <p>SOBRE O PROJETO</p>
+
+        <h1>Inovação a serviço do campo</h1>
+
+        <p>
+          O CoffeTech nasceu da necessidade real dos produtores de café Arábica
+          de monitorar a umidade do solo com precisão e baixo custo.
+          Desenvolvido com sensores capacitivos de alta sensibilidade e o
+          microcontrolador Arduino, o sistema coleta dados do solo continuamente
+          e os apresenta em um dashboard intuitivo.
+        </p>
+
+        <p>
+          Nosso objetivo é simples: ajudar o produtor a irrigar quando
+          necessário, evitando o excesso que desperdiça água e energia elétrica,
+          e a falta que compromete a colheita. Mais eficiência, menos custo,
+          melhor qualidade do grão.
+        </p>
+
+        <ul>
+          <li>
+            <p>Economia de água</p>
+            <span>Irrigação precisa no momento certo</span>
+          </li>
+
+          <li>
+            <p>Menos energia</p>
+            <span>Menos bombas ligadas desnecessariamente</span>
+          </li>
+
+          <li>
+            <p>Grão de qualidade</p>
+            <span>Solo bem irrigado, café de excelência</span>
+          </li>
+        </ul>
+      </div>
+
+      <picture class="sobre-imagem">
+        <img src="./img/Imagem sobre.avif" alt="Safras" />
+      </picture>
+    </section>
+
+    <section class="como-funciona" id="secaoComoFunciona">
+      <div class="titulos-como-funciona">
+        <p>FLUXO DO SISTEMA</p>
+
+        <h1>Como o monitoramento funciona</h1>
+      </div>
+
+      <ul class="cards">
+        <li>
+          <span class="icone-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <ellipse
+                cx="24"
+                cy="37"
+                rx="12"
+                ry="6"
+                class="preenchido-terra"
+              />
+              <circle cx="22" cy="13" r="4" class="preenchido-verde" />
+              <path d="M22 17 V25" class="traco-verde" />
+              <path
+                d="M12 31 C16 21, 20 29, 24 25 S31 23, 36 27"
+                class="traco-marrom"
+              />
+            </svg>
+          </span>
+          <span>1</span>
+          <p class="titulo-card">Solo</p>
+          <span class="card-info"
+            >O sensor é inserido diretamente no solo da plantação de café
+            Arábica, em profundidade calibrada para a zona radicular.</span
+          >
+        </li>
+
+        <li>
+          <span class="icone-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <rect
+                x="17"
+                y="7"
+                width="14"
+                height="32"
+                rx="3"
+                class="traco-verde"
+              />
+              <rect
+                x="20"
+                y="11"
+                width="8"
+                height="5"
+                rx="1"
+                class="preenchido-claro"
+              />
+              <path d="M24 31 V36" class="traco-marrom" />
+            </svg>
+          </span>
+          <span>2</span>
+          <p class="titulo-card">Sensor capacitivo</p>
+          <span class="card-info"
+            >O sensor capacitivo mede a constante dielétrica do solo, que varia
+            conforme a umidade — sem usar eletrólise, muito mais durável.</span
+          >
+        </li>
+
+        <li>
+          <span class="icone-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <rect
+                x="6"
+                y="11"
+                width="36"
+                height="26"
+                rx="3"
+                class="traco-verde"
+              />
+              <rect
+                x="10"
+                y="16"
+                width="12"
+                height="9"
+                rx="1"
+                class="preenchido-claro traco-fino"
+              />
+              <circle cx="34" cy="18" r="1.8" class="preenchido-marrom" />
+              <circle cx="34" cy="24" r="1.8" class="preenchido-marrom" />
+              <circle cx="34" cy="30" r="1.8" class="preenchido-marrom" />
+            </svg>
+          </span>
+          <span>3</span>
+          <p class="titulo-card">Arduino</p>
+          <span class="card-info"
+            >O microcontrolador Arduino lê o sinal analógico do sensor, converte
+            e processa os dados de tensão em valores percentuais de
+            umidade.</span
+          >
+        </li>
+
+        <li>
+          <span class="icone-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <polyline
+                points="8,37 16,26 21,30 30,17 39,22"
+                class="traco-verde"
+              />
+              <circle cx="16" cy="26" r="2.5" class="preenchido-marrom" />
+              <circle cx="21" cy="30" r="2.5" class="preenchido-marrom" />
+              <circle cx="30" cy="17" r="2.5" class="preenchido-marrom" />
+            </svg>
+          </span>
+          <span>4</span>
+          <p class="titulo-card">Dados</p>
+          <span class="card-info"
+            >Os dados são transmitidos via cabo serial ou módulo WiFi,
+            armazenados e timestampados para análise histórica e alertas
+            automáticos.</span
+          >
+        </li>
+
+        <li>
+          <span class="icone-card">
+            <svg viewBox="0 0 48 48" aria-hidden="true">
+              <rect
+                x="6"
+                y="10"
+                width="36"
+                height="28"
+                rx="3"
+                class="traco-verde"
+              />
+              <path d="M16 32 V26" class="traco-marrom" />
+              <path d="M24 32 V19" class="traco-marrom" />
+              <path d="M32 32 V28" class="traco-marrom" />
+            </svg>
+          </span>
+          <span>5</span>
+          <p class="titulo-card">Dashboard</p>
+          <span class="card-info"
+            >O produtor acessa o dashboard web de qualquer dispositivo, vendo
+            umidade atual, histórico, status e recomendações de irrigação.</span
+          >
+        </li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <nav class="nav-footer">
+        <div class="container-logo">
+          <picture>
+            <img src="img/logo.png" alt="logo coffee tech" class="footer-logo" />
+            <h4 class="footer-titulo">Coffee Tech</h4>
+          </picture>
+
+          <p>
+            Monitoramento inteligente de umidade do solo para produtores de café
+            Arábica.
+          </p>
+        </div>
+
+        <div class="footer-menu">
+          <h4 class="footer-titulo">Navegação</h4>
+
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#secaoSobre">Sobre</a></li>
+            <li><a href="index.html#secaoComoFunciona">Como Funciona</a></li>
+            <li><a href="calculadora.html">Calculadora</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="dev-info">
+        <h4>Desenvolvedores</h4>
+        <p class="desenvolvedores">
+          Arthur Lima dos Santos, Bruno Volpe Costa, Guilherme de Sousa
+          Pinheiro, Julia Carolina Brito dos Santos, Mathes de Souza Menino,
+          Nataly Rufino Pereira Gutierrez e Vinicius Augusto Alves de Almeida.
+        </p>
+      </div>
+      <p class="footer-copy">2026 Coffee Tech. Protótipo institucional.</p>
+    </footer>
+  </body>
+</html>

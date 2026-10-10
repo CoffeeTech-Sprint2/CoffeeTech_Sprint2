@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Tech | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="div-logo">
+        <a href="index.html"><img src="img/logo.png" alt="logo coffee tech" class="logo" /></a>
+        <h1 class="titulo"><a href="index.html">Coffee Tech</a></h1>
+      </div>
+
+      <nav class="nav">
+        <ul class="menu">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="index.html#secaoSobre">Sobre</a></li>
+          <li><a href="index.html#secaoComoFunciona">Como Funciona</a></li>
+          <li><a href="index.html">Calculadora</a></li>
+          <li><a href="index.html">Dashboard</a></li>
+        </ul>
+
+        <div class="menu-login">
+          <span class="login"><a href="login.html">Login</a></span>
+          <span class="cadastro"><a href="cadastro.html">Cadastro</a></span>
+        </div>
+      </nav>
+    </header>
+
+    <main class="dashboard">
+      <div class="tituloGrafico">
+        <h3>KPIs</h3>
+      </div>
+
+      <div class="containerKPIs">
+        <div class="caixinhaKPIs">
+          <span class="kpi-rotulo">Umidade atual</span>
+          <span class="kpi-valor">31%</span>
+        </div>
+
+        <div class="caixinhaKPIs">
+          <span class="kpi-rotulo">Mínima do dia</span>
+          <span class="kpi-valor">30%</span>
+        </div>
+
+        <div class="caixinhaKPIs">
+          <span class="kpi-rotulo">Máxima do dia</span>
+          <span class="kpi-valor">32%</span>
+        </div>
+
+        <div class="caixinhaKPIs">
+          <span class="kpi-rotulo">Média do dia</span>
+          <span class="kpi-valor">30,6%</span>
+        </div>
+
+        <!-- <div class="caixinhaKPIs kpi-alerta">
+                <span class="kpi-rotulo">Status do solo</span>
+                <span class="kpi-valor">Atenção</span>
+            </div> -->
+      </div>
+
+      <div class="alerta">
+        <div class="caixinhaAlerta">
+          <!-- Ícone de alerta vazado (somente contorno) -->
+          <svg class="alerta-icone" viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M24 6 L44 40 H4 Z" />
+            <path d="M24 19 V29" />
+            <circle cx="24" cy="34" r="0.8" />
+          </svg>
+
+          <div class="alerta-texto">
+            <p class="alerta-titulo">Umidade no limite mínimo</p>
+            <p class="alerta-descricao">
+              O solo atingiu 30%, o nível mínimo recomendado para o café
+              Arábica. Considere irrigar a área nas próximas horas.
+            </p>
+          </div>
+
+          <span class="alerta-hora">Hoje, 20h00</span>
+        </div>
+      </div>
+
+      <div class="tituloGrafico">
+        <h3>Gráfico da % de umidade ao longo do dia</h3>
+      </div>
+
+      <div class="canva">
+        <canvas id="graficoUmidade"></canvas>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <nav class="nav-footer">
+        <div class="container-logo">
+          <picture>
+            <img src="img/logo.png" alt="logo coffee tech" class="footer-logo" />
+            <h4 class="footer-titulo">Coffee Tech</h4>
+          </picture>
+
+          <p>
+            Monitoramento inteligente de umidade do solo para produtores de café
+            Arábica.
+          </p>
+        </div>
+
+        <div class="footer-menu">
+          <h4 class="footer-titulo">Navegação</h4>
+
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="index.html#secaoSobre">Sobre</a></li>
+            <li><a href="index.html#secaoComoFunciona">Como Funciona</a></li>
+            <li><a href="calculadora.html">Calculadora</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="dev-info">
+        <h4>Desenvolvedores</h4>
+        <p class="desenvolvedores">
+          Arthur Lima dos Santos, Bruno Volpe Costa, Guilherme de Sousa
+          Pinheiro, Julia Carolina Brito dos Santos, Mathes de Souza Menino,
+          Nataly Rufino Pereira Gutierrez e Vinicius Augusto Alves de Almeida.
+        </p>
+      </div>
+      <p class="footer-copy">2026 Coffee Tech. Protótipo institucional.</p>
+    </footer>
+
+    <script>
+      const ctx = document.getElementById("graficoUmidade");
+
+      const MINIMO = 30;
+      const horas = [
+        "12h00",
+        "13h00",
+        "14h00",
+        "15h00",
+        "16h00",
+        "17h00",
+        "18h00",
+        "19h00",
+        "20h00",
+      ];
+
+      Chart.defaults.font.family = '"Outfit", sans-serif';
+      Chart.defaults.font.size = 13;
+      Chart.defaults.color = "#5a4a3f";
+
+      new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: horas,
+          datasets: [
+            {
+              label: "% de umidade",
+              data: [40, 43, 48, 39, 42, 44, 40, 35, 30],
+              borderColor: "rgb(89, 67, 44)",
+              backgroundColor: "rgba(89, 67, 44, 0.10)",
+              borderWidth: 3,
+              tension: 0.3,
+              fill: true,
+              pointBackgroundColor: "rgb(104, 34, 2)",
+              pointBorderColor: "#ffffff",
+              pointBorderWidth: 2,
+              pointRadius: 5,
+              pointHoverRadius: 7,
+            },
+            {
+              // Âncora: linha pontilhada no mínimo (30%)
+              label: "Mínimo (" + MINIMO + "%)",
+              data: horas.map(() => MINIMO),
+              borderColor: "rgb(104, 34, 2)",
+              borderWidth: 2,
+              borderDash: [6, 6],
+              pointRadius: 0,
+              pointHoverRadius: 0,
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: "index", intersect: false },
+          plugins: {
+            legend: {
+              position: "bottom",
+              labels: { usePointStyle: true, boxWidth: 8, padding: 20 },
+            },
+            tooltip: {
+              backgroundColor: "rgb(89, 67, 44)",
+              titleFont: { family: '"Outfit", sans-serif', weight: "600" },
+              padding: 12,
+              cornerRadius: 8,
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { callback: (v) => v + "%" },
+              grid: { color: "rgba(89, 67, 44, 0.10)" },
+              border: { display: false },
+            },
+            x: {
+              grid: { display: false },
+              border: { color: "rgba(89, 67, 44, 0.25)" },
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
