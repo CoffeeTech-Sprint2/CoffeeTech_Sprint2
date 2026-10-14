@@ -74,11 +74,7 @@ O sistema faz a leitura analógica do sensor, converte os dados em porcentagem d
 
 <!-- ![Arquitetura da solução](./docs/img/arquitetura.png) -->
 
-### Dashboard
 
-> 📷 **Espaço reservado:** prints da dashboard web.
-
-<!-- ![Dashboard](./docs/img/dashboard.png) -->
 
 ---
 
@@ -86,62 +82,57 @@ O sistema faz a leitura analógica do sensor, converte os dados em porcentagem d
 
 | Entregável | Link |
 |------------|------|
+| 📄 Documentação | [Abrir](https://bandteccom-my.sharepoint.com/:w:/g/personal/julia_bsantos_sptech_school/IQBOTKKde-VrRLdML1pMiimxAZ4IKQYrDErZ1yde8GPFSow?e=cbqTyH) |
 | 🗄️ DER (Diagrama Entidade-Relacionamento) | _em breve_ |
-| 📄 Documentação | _em breve_ |
-| 📊 Especificação da dashboard | _em breve_ |
-| 📋 Backlog | _em breve_ |
-| 📉 Gráfico de burndown | _em breve_ |
+| 📊 Especificação da dashboard | [Abrir](https://bandteccom-my.sharepoint.com/:w:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B923F4B97-125E-4FCC-A8B3-AAC5A4EF4964%7D&file=Grupo4_EspecificacaoDashboard.docx&action=default&mobileredirect=true) |
+| 📋 Backlog | [Abrir](https://bandteccom-my.sharepoint.com/:x:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B1BACAEBC-3D99-4B11-A0DB-67F4AA72C580%7D&file=Product_Backlog_coffeTech.xlsx&action=default&mobileredirect=true) |
+| 📉 Gráfico de burndown |[Abrir](https://bandteccom-my.sharepoint.com/:x:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B8C98FE28-C8DB-410E-8A25-8AFF6DB7EA6B%7D&file=Planilha%20dos%20riscos.xlsx&action=default&mobileredirect=true) |
 | 🌐 Site estático / Dashboard | _em breve_ |
 | 💰 Simulador financeiro | _em breve_ |
-| 📽️ Apresentação | _em breve_ |
-
-### 🗄️ DER (Diagrama Entidade-Relacionamento)
-
-🔗 **Link:** _em breve_
-
-> 📷 **Espaço reservado:** insira aqui o print do DER.
-
-<!-- ![DER](./docs/img/der.png) -->
+| 📽️ Apresentação | _em breve_ | 
 
 ### 📄 Documentação
 
-🔗 **Link:** _em breve_
+🔗 **Link:** [Abrir documentação](https://bandteccom-my.sharepoint.com/:w:/g/personal/julia_bsantos_sptech_school/IQBOTKKde-VrRLdML1pMiimxAZ4IKQYrDErZ1yde8GPFSow?e=cbqTyH)
 
-> 📷 **Espaço reservado:** insira aqui o print da capa ou de uma página da documentação.
 
-<!-- ![Documentação](./docs/img/documentacao.png) -->
+### 🗄️ DER (Diagrama Entidade-Relacionamento)
+
+![DER](./DOCUMENTACAO/img/der.png)
+
 
 ### 📊 Especificação da dashboard
 
-🔗 **Link:** _em breve_
+🔗 **Link:** [Abrir especificação da dashboard](https://bandteccom-my.sharepoint.com/:w:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B923F4B97-125E-4FCC-A8B3-AAC5A4EF4964%7D&file=Grupo4_EspecificacaoDashboard.docx&action=default&mobileredirect=true)
 
-> 📷 **Espaço reservado:** insira aqui o print da especificação (seções, KPIs e alertas).
+### 🌐 Site estático
+![Site institucional](./DOCUMENTACAO/img/homepage.png)
+![Cadastro](./DOCUMENTACAO/img/cadastro.png)
+![Login](./DOCUMENTACAO/img/login.png)
 
-<!-- ![Especificação da dashboard](./docs/img/especificacao-dashboard.png) -->
+### Dashboard
+
+![Dashboard](./DOCUMENTACAO/img/dashboard.png)
+
 
 ### 📋 Backlog
 
-🔗 **Link:** _em breve_
+🔗 **Link:** [Abrir backlog](https://bandteccom-my.sharepoint.com/:x:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B1BACAEBC-3D99-4B11-A0DB-67F4AA72C580%7D&file=Product_Backlog_coffeTech.xlsx&action=default&mobileredirect=true)
 
-> 📷 **Espaço reservado:** insira aqui o print do backlog (Trello, Jira, Azure DevOps etc.).
-
-<!-- ![Backlog](./docs/img/backlog.png) -->
+![Backlog](./DOCUMENTACAO/img/backlog.png)
 
 ### 📉 Gráfico de burndown
 
-🔗 **Link:** _em breve_
+🔗 **Link:** [Abrir gráfico de burndown](https://bandteccom-my.sharepoint.com/:x:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B8C98FE28-C8DB-410E-8A25-8AFF6DB7EA6B%7D&file=Planilha%20dos%20riscos.xlsx&action=default&mobileredirect=true)
 
-> 📷 **Espaço reservado:** insira aqui o print do gráfico de burndown da sprint.
 
-<!-- ![Gráfico de burndown](./docs/img/burndown.png) -->
+![Gráfico de burndown](./DOCUMENTACAO/img/burndown.png)
 
 ### ⚠️ Planilha de risco
 
-🔗 **Link:** _em breve_
+🔗 **Link:** [Abrir planilha de riscos](https://bandteccom-my.sharepoint.com/:x:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B8C98FE28-C8DB-410E-8A25-8AFF6DB7EA6B%7D&file=Planilha%20dos%20riscos.xlsx&action=default&mobileredirect=true)
 
-> 📷 **Espaço reservado:** insira aqui o print da planilha de risco (riscos, probabilidade, impacto e plano de ação).
-
-<!-- ![Planilha de risco](./img/planilha-risco.png) -->
+![Planilha de risco](./DOCUMENTACAO/img/planilha-risco.png)
 
 ---
 
@@ -149,15 +140,15 @@ O sistema faz a leitura analógica do sensor, converte os dados em porcentagem d
 
 | Entregável | Progresso |
 |------------|-----------|
-| Contexto | `▱▱▱▱▱▱▱▱▱▱ 0%` |
+| Contexto | ` ▰▰▰▰▰▰▰▰▰▰ 100%` |
 | Protótipo do site | `▰▰▰▰▰▰▰▰▰▰ 100%` |
-| Banco de dados | `▰▰▰▰▰▰▰▰▰▱ 90%` |
-| Simulador financeiro | `▰▰▰▰▰▰▰▱▱▱ 70%` |
-| Documentação | `▰▰▰▰▱▱▱▱▱▱ 40%` |
-| Site final | `▰▰▰▰▱▱▱▱▱▱ 40%` |
+| Banco de dados | ` ▰▰▰▰▰▰▰▰▰▰ 100% ` |
+| Simulador financeiro | `▰▰▰▰▰▰▰▰▰▱ 90%` |
+| Documentação | ` ▰▰▰▰▰▰▰▰▰▰ 100%  ` |
+| Site final | `▰▰▰▰▰▰▰▰▰▱ 90%` |
 | Apresentação | `▱▱▱▱▱▱▱▱▱▱ 0%` |
 
-> O **progresso geral** é a média simples dos 7 entregáveis: `▰▰▰▰▱▱▱▱▱▱ 40%`
+> O **progresso geral** é a média simples dos 7 entregáveis: `▰▰▰▰▰▰▰▰▱▱ 80%`
 
 ---
 
