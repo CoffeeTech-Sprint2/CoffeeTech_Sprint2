@@ -5,7 +5,7 @@
 [![Turma](https://img.shields.io/badge/turma-1ADSA-blue)](#)
 [![Grupo](https://img.shields.io/badge/grupo-04-success)](#)
 [![Semestre](https://img.shields.io/badge/semestre-2026.2-lightgrey)](#)
-[![Progresso](https://img.shields.io/badge/progresso-40%25-yellow)](#-progresso-dos-entregáveis)
+[![Progresso](https://img.shields.io/badge/progresso-80%25-green)](#-progresso-dos-entregáveis)
 
 **Faculdade:** SPTech (São Paulo Tech School)
 
