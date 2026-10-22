@@ -115,6 +115,6 @@ label{
     transition: background-color 0.2s;
 }
 
-.card-nota {
+.card-nota, .card-label{
     color: #f4ede0;;
 }
