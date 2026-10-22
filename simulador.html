@@ -27,6 +27,9 @@
     <p>Área da plantação (hectares)</p>
     <input type="number" id="ipt_hectares" placeholder="Ex: 10">
 
+    <!-- <h3>Total sensores</h3>
+    <input type="number" id="ipt_sensores" placeholder="Total de sensores"> -->
+
     <br><br>
 
     <button onclick="calcular()">Calcular</button>
@@ -80,6 +83,9 @@
                 // Benefício estimado anual
                 let beneficioTotalAno = economiaAguaAno + valorRecuperado;
 
+                // Porcentagem do benefício em relação ao gasto anual com água
+                let beneficioPercentual = beneficioTotalAno / gastoAguaAno * 100;
+
                 // Cada ponto atende até 20 hectares
                 let pontos = 0;
                 let areaCoberta = 0;
@@ -89,25 +95,35 @@
                     areaCoberta = areaCoberta + 20;
                 }
 
-                // Custos da solução
-                let valorInstalacao = 399.90;
-                let mensalidadePonto = 99.90;
+                // Custos da solução                    
+                let totalSensores = pontos;                //   Number(ipt_sensores.value)
+                let valorInstalacao = 1600.1;      // 399.90 ---> Valor antigo
 
-                let investimentoInicial = pontos * valorInstalacao;
-                let manutencaoMes = pontos * mensalidadePonto;
+                if(totalSensores >= 1){
+                    let contador = 0;
 
-                let manutencaoAno = 0;
-                let mes = 1;
-
-                while (mes <= 12) {
-                    manutencaoAno = manutencaoAno + manutencaoMes;
-                    mes = mes + 1;
+                    while(contador < totalSensores){
+                        valorInstalacao += 399.90;
+                        contador++
+                    }
                 }
 
-                let custoPrimeiroAno = investimentoInicial + manutencaoAno;
+                // let investimentoInicial = valorInstalacao;      pontos * valorInstalacao
 
-                // Porcentagem do benefício em relação ao gasto anual com água
-                let beneficioPercentual = beneficioTotalAno / gastoAguaAno * 100;
+                // let manutencaoMes = pontos * mensalidadePonto; mensalidade no mes (pontos vezes mensalidade), pra saber quanto q vai ser no mes
+
+                // let manutencaoAno = 0;
+                // let mes = 1;
+
+                // while (mes <= 12) {
+                //     manutencaoAno = manutencaoAno + manutencaoMes;
+                //     mes = mes + 1;
+                // }
+
+                let mensalidade = 99.90;
+                let mensalidadeAno = 99.90 * 12;
+
+                let custoPrimeiroAno = valorInstalacao + mensalidadeAno;
 
                 resultado.innerHTML = `
 
@@ -149,15 +165,17 @@
 
                     <h2>Investimento na Solução</h2>
 
-                    <p>Área da plantação: ${hectares} hectares (100%)</p>
+                    <p>Total de sensores necessários: ${pontos} </p>
 
-                    <p>Capacidade de cada ponto: até 20 hectares</p>
+                    <p>Custo por sensor: R$${(pontos * 399.90).toFixed(2)} </p>
 
-                    <p>Instalação por ponto: R$ ${valorInstalacao.toFixed(2)}</p>
+                    <p>Capacidade de cada sensor por ponto: até 20 hectares</p>
 
-                    <p>Mensalidade total: R$ ${manutencaoMes.toFixed(2)}</p>
+                    <p>Valor da instalação: R$ ${valorInstalacao.toFixed(2)}</p>
 
-                    <p>Custo total no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
+                    <p>Mensalidade: R$ ${mensalidade.toFixed(2)}</p>
+
+                    <p>Custo da mensalidade no ano: R$ ${mensalidadeAno.toFixed(2)}</p>
 
                     <h2>Resultado Financeiro Estimado</h2>
 
@@ -166,6 +184,9 @@
                     <p>Custo total da solução no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
 
                 `;
+
+                // <p>Custo total no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
+                // <p>Área da plantação: ${hectares} hectares (100%)</p>
             }
         }
 </script>
