@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculadora financeira</title>
+</head>
+<body>
+    <h1>Calculadora financeira</h1>
+
+    <p>Valor de referência: R$ 1.600,00 por saca de café arábica (60 kg).</p>
+
+    <p>Os resultados são estimativas e podem variar de acordo com as condições da propriedade.</p>
+
+    <h3>Dados da Irrigação</h3>
+
+    <p>Valor gasto por mês com água (R$)</p>
+    <input type="number" id="ipt_valorAgua" placeholder="Ex: 40000">
+
+    <h3>Dados da Produção</h3>
+
+    <p>Produção potencial de sacas por ano, antes das perdas</p>
+    <input type="number" id="ipt_sacas" placeholder="Ex: 600">
+
+    <h3>Dados da Propriedade</h3>
+
+    <p>Área da plantação (hectares)</p>
+    <input type="number" id="ipt_hectares" placeholder="Ex: 10">
+
+    <br><br>
+
+    <button onclick="calcular()">Calcular</button>
+
+    <div id="resultado"></div>
+    <div id="custoSolucao"></div>
+
+</body>
+</html>
+<script>
+        function calcular() {
+
+            let valorAguaMes = Number(ipt_valorAgua.value);
+            let sacas = Number(ipt_sacas.value);
+            let hectares = Number(ipt_hectares.value);
+
+            if (valorAguaMes <= 0 || sacas <= 0 || hectares <= 0) {
+
+                resultado.innerHTML = `
+                    <p>Preencha todos os campos com valores maiores que zero.</p>
+                `;
+
+                custoSolucao.innerHTML = "";
+
+            } else {
+
+                let valorSaca = 1600;
+
+                // Porcentagens utilizadas nas estimativas
+                let economiaPercentual = 30;
+                let perdaSemSensor = 30;
+                let perdaComSensor = 5;
+                let sacasPreservadasPercentual = 100 - perdaComSensor;
+                let sacasRecuperadasPercentual = perdaSemSensor - perdaComSensor;
+
+                // Economia com água
+                let economiaAguaMes = valorAguaMes * economiaPercentual / 100;
+                let economiaAguaAno = economiaAguaMes * 12;
+                let gastoAguaAno = valorAguaMes * 12;
+
+                // Produção
+                let sacasPerdidasSemSensor = sacas * perdaSemSensor / 100;
+                let sacasPerdidasComSensor = sacas * perdaComSensor / 100;
+
+                let sacasPreservadas = sacas - sacasPerdidasComSensor;
+                let sacasRecuperadas = sacasPerdidasSemSensor - sacasPerdidasComSensor;
+
+                let valorRecuperado = sacasRecuperadas * valorSaca;
+                let valorProducaoComSensor = sacasPreservadas * valorSaca;
+
+                // Benefício estimado anual
+                let beneficioTotalAno = economiaAguaAno + valorRecuperado;
+
+                // Cada ponto atende até 20 hectares
+                let pontos = 0;
+                let areaCoberta = 0;
+
+                while (areaCoberta < hectares) {
+                    pontos = pontos + 1;
+                    areaCoberta = areaCoberta + 20;
+                }
+
+                // Custos da solução
+                let valorInstalacao = 399.90;
+                let mensalidadePonto = 99.90;
+
+                let investimentoInicial = pontos * valorInstalacao;
+                let manutencaoMes = pontos * mensalidadePonto;
+
+                let manutencaoAno = 0;
+                let mes = 1;
+
+                while (mes <= 12) {
+                    manutencaoAno = manutencaoAno + manutencaoMes;
+                    mes = mes + 1;
+                }
+
+                let custoPrimeiroAno = investimentoInicial + manutencaoAno;
+
+                // Porcentagem do benefício em relação ao gasto anual com água
+                let beneficioPercentual = beneficioTotalAno / gastoAguaAno * 100;
+
+                resultado.innerHTML = `
+
+                    <h2>Economia com Irrigação</h2>
+
+                    <p>Economia estimada sobre o gasto com água: ${economiaPercentual}%</p>
+
+                    <p>Gasto mensal atual com água: R$ ${valorAguaMes.toFixed(2)} (100%)</p>
+
+                    <p>Economia estimada por mês: R$ ${economiaAguaMes.toFixed(2)} (${economiaPercentual}%)</p>
+
+                    <p>Gasto anual atual com água: R$ ${gastoAguaAno.toFixed(2)} (100%)</p>
+
+                    <p>Economia estimada por ano: R$ ${economiaAguaAno.toFixed(2)} (${economiaPercentual}%)</p>
+
+                    <h2>Ganho na Produção</h2>
+
+                    <p>Perda estimada sem monitoramento: ${perdaSemSensor}%</p>
+
+                    <p>Sacas preservadas: ${sacasPreservadas.toFixed(2)} sacas (${sacasPreservadasPercentual}%)</p>
+
+                    <p>Sacas potencialmente preservadas em relação às perdas: ${sacasRecuperadas.toFixed(2)} sacas (${sacasRecuperadasPercentual}% da produção potencial)</p>
+
+                    <p>Valor potencialmente recuperado: R$ ${valorRecuperado.toFixed(2)} (${sacasRecuperadasPercentual}% do valor da produção potencial)</p>
+
+                    <p>Valor estimado da produção com monitoramento: R$ ${valorProducaoComSensor.toFixed(2)} (${sacasPreservadasPercentual}% do valor da produção potencial)</p>
+
+                    <h2>Benefício Total Estimado por Ano</h2>
+
+                    <p>Economia estimada com água: R$ ${economiaAguaAno.toFixed(2)} (${economiaPercentual}% do gasto anual com água)</p>
+
+                    <p>Valor potencialmente recuperado na produção: R$ ${valorRecuperado.toFixed(2)} (${sacasRecuperadasPercentual}% do valor da produção potencial)</p>
+
+                    <p>Benefício total estimado: R$ ${beneficioTotalAno.toFixed(2)} (${beneficioPercentual.toFixed(2)}% do gasto anual com água)</p>
+
+                `;
+
+                custoSolucao.innerHTML = `
+
+                    <h2>Investimento na Solução</h2>
+
+                    <p>Área da plantação: ${hectares} hectares (100%)</p>
+
+                    <p>Capacidade de cada ponto: até 20 hectares</p>
+
+                    <p>Instalação por ponto: R$ ${valorInstalacao.toFixed(2)}</p>
+
+                    <p>Mensalidade total: R$ ${manutencaoMes.toFixed(2)}</p>
+
+                    <p>Custo total no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
+
+                    <h2>Resultado Financeiro Estimado</h2>
+
+                    <p>Benefício total estimado por ano: R$ ${beneficioTotalAno.toFixed(2)}</p>
+
+                    <p>Custo total da solução no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
+
+                `;
+            }
+        }
+</script>
