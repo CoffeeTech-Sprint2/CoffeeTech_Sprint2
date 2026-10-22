@@ -114,3 +114,7 @@ label{
     cursor: pointer;
     transition: background-color 0.2s;
 }
+
+.card-nota {
+    color: #f4ede0;;
+}
