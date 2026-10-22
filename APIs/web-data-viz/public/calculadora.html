@@ -51,22 +51,36 @@
 
     <div class="container-calculadora">
       <div class="bloco-info">
-        <label for="ipt_valorAgua">VALOR GASTO COM ÁGUA POR MÊS (R$)</label
-        ><br />
-        <input type="text" id="ipt_valorAgua" placeholder="Ex: 4000" /><br />
+        <h1>Calculadora financeira</h1>
 
-        <label for="ipt_vezes">QUANTAS VEZES IRRIGA NO MÊS</label><br />
-        <input type="text" id="ipt_vezes" placeholder="Ex: 4 vezes" /><br />
+    <p>Valor de referência: R$ 1.600,00 por saca de café arábica (60 kg).</p>
 
-        <label for="ipt_sacas">SACAS PRODUZIDAS POR ANO</label><br />
-        <input type="text" id="ipt_sacas" placeholder="Ex: 600 sacas" /><br />
+    <p>Os resultados são estimativas e podem variar de acordo com as condições da propriedade.</p>
 
-        <label for="ipt_area">TAMANHO DA ÁREA (Hectares)</label><br />
-        <input type="text" id="ipt_area" placeholder="Ex: 10" /><br />
+    <h3>Dados da Irrigação</h3>
 
-        <br />
+    <p>Valor gasto por mês com água (R$)</p>
+    <input type="number" id="ipt_valorAgua" placeholder="Ex: 40000">
 
-        <button class="btn-calcular" onclick="calcular()">Calcular estimativa</button>
+    <h3>Dados da Produção</h3>
+
+    <p>Produção potencial de sacas por ano, antes das perdas</p>
+    <input type="number" id="ipt_sacas" placeholder="Ex: 600">
+
+    <h3>Dados da Propriedade</h3>
+
+    <p>Área da plantação (hectares)</p>
+    <input type="number" id="ipt_hectares" placeholder="Ex: 10">
+
+    <!-- <h3>Total sensores</h3>
+    <input type="number" id="ipt_sensores" placeholder="Total de sensores"> -->
+
+    <br><br>
+
+    <button class="btn-calcular" onclick="calcular()">Calcular</button>
+
+    
+   
       </div>
 
       <div class="bloco-resultado" id="resultado">
@@ -74,6 +88,8 @@
           <div class="card-label">Sua estimativa</div>
           <div class="card-nota">
             Preencha os dados ao lado e clique em calcular para ver o retorno.
+            <div id="exibirResultado"></div> 
+            <div id="custoSolucao"></div>
           </div>
         </div>
       </div>
@@ -118,67 +134,155 @@
     </footer>
   </body>
 
-  <script>
-    function calcular() {
-      // --- Dados de entrada ---
-      let valorAguaMes = Number(ipt_valorAgua.value);
-      let sacas = Number(ipt_sacas.value);
+ <script>
+        function calcular() {
 
-      // --- Valores de referência (exemplo, ajustáveis apenas aqui no código) ---
-      let economiaPercentual = 30; // % de economia de água estimada com o sensor
-      let valorSaca = 1803.73;
-      let perdaSemSensor = 0.3; // 30% de perda estimada sem monitoramento (com base em pesquisas e documentação)
-      let perdaComSensor = 0.05; // 5% de perda estimada com monitoramento (com base em pesquisas e documentação)
+            let valorAguaMes = Number(ipt_valorAgua.value);
+            let sacas = Number(ipt_sacas.value);
+            let hectares = Number(ipt_hectares.value);
 
-      // --- Cálculo da economia de água ---
-      let economiaAguaMes = valorAguaMes * (economiaPercentual / 100);
-      let economiaAguaAno = economiaAguaMes * 12;
+            if (valorAguaMes <= 0 || sacas <= 0 || hectares <= 0) {
 
-      // --- Cálculo da redução de perda de safra ---
-      let sacasPerdidasSemSensor = sacas * perdaSemSensor;
-      let sacasPerdidasComSensor = sacas * perdaComSensor;
-      let sacasRecuperadas = sacasPerdidasSemSensor - sacasPerdidasComSensor;
-      let valorRecuperado = sacasRecuperadas * valorSaca;
-      let valorProducaoComSensor = (sacas - sacasPerdidasComSensor) * valorSaca;
+                resultado.innerHTML = `
+                    <p>Preencha todos os campos com valores maiores que zero.</p>
+                `;
 
-      // --- Benefício total estimado ---
-      let beneficioTotalAno = economiaAguaAno + valorRecuperado;
+                custoSolucao.innerHTML = "";
 
-      resultado.innerHTML = `
+            } else {
 
-        <br><h2>Economia com Irrigação Inteligente</h2><br>
+                let valorSaca = 1600;
 
-        <small>Essa economia é calculada sobre o valor que você informou gastar hoje por mês com água (R$ ${valorAguaMes.toFixed(2)}), aplicando um percentual médio de redução de consumo de ${economiaPercentual}%, estimado a partir do uso do sensor de umidade do solo, que evita irrigações desnecessárias ao identificar o momento exato em que a planta precisa de água.</small><br><br>
+                // Porcentagens utilizadas nas estimativas
+                let economiaPercentual = 30;
+                let perdaSemSensor = 30;
+                let perdaComSensor = 5;
+                let sacasPreservadasPercentual = 100 - perdaComSensor;
+                let sacasRecuperadasPercentual = perdaSemSensor - perdaComSensor;
 
-        Economia de água por mês: R$ ${economiaAguaMes.toFixed(2)}<br><br>
+                // Economia com água
+                let economiaAguaMes = valorAguaMes * economiaPercentual / 100;
+                let economiaAguaAno = economiaAguaMes * 12;
+                let gastoAguaAno = valorAguaMes * 12;
 
-        Economia de água por ano: R$ ${economiaAguaAno.toFixed(2)}<br><br>
+                // Produção
+                let sacasPerdidasSemSensor = sacas * perdaSemSensor / 100;
+                let sacasPerdidasComSensor = sacas * perdaComSensor / 100;
 
-        <h2>Ganho na Produção</h2><br>
+                let sacasPreservadas = sacas - sacasPerdidasComSensor;
+                let sacasRecuperadas = sacasPerdidasSemSensor - sacasPerdidasComSensor;
 
-        <small>Os percentuais abaixo (${(perdaSemSensor * 100).toFixed(0)}% sem sensor e ${(perdaComSensor * 100).toFixed(0)}% com sensor) são valores fixos, definidos com base em nossas pesquisas e documentação técnica sobre perdas de safra relacionadas a manejo inadequado de irrigação.</small><br><br>
+                let valorRecuperado = sacasRecuperadas * valorSaca;
+                let valorProducaoComSensor = sacasPreservadas * valorSaca;
 
-        Perda estimada sem sensor: ${(perdaSemSensor * 100).toFixed(0)}%<br><br>
+                // Benefício estimado anual
+                let beneficioTotalAno = economiaAguaAno + valorRecuperado;
 
-        Perda estimada com sensor: ${(perdaComSensor * 100).toFixed(0)}%<br><br>
+                // Porcentagem do benefício em relação ao gasto anual com água
+                let beneficioPercentual = beneficioTotalAno / gastoAguaAno * 100;
 
-        <small>O valor recuperado é a diferença de produção que deixa de se perder graças à redução da perda (de ${(perdaSemSensor * 100).toFixed(0)}% para ${(perdaComSensor * 100).toFixed(0)}%), convertida em reais pelo valor da saca de café arábica.</small><br><br>
+                // Cada ponto atende até 20 hectares
+                let pontos = 0;
+                let areaCoberta = 0;
 
-        Valor recuperado com produção: R$ ${valorRecuperado.toFixed(2)}<br><br>
+                while (areaCoberta < hectares) {
+                    pontos = pontos + 1;
+                    areaCoberta = areaCoberta + 20;
+                }
 
-        Valor total da produção com sensor: R$ ${valorProducaoComSensor.toFixed(2)}<br><br>
+                // Custos da solução                    
+                let totalSensores = pontos;                //   Number(ipt_sensores.value)
+                let valorInstalacao = 1600.1;      // 399.90 ---> Valor antigo
 
-        <h2>Benefício Total Estimado (por ano)</h2><br>
+                if(totalSensores >= 1){
+                    let contador = 0;
 
-        <small>Esse total soma apenas a economia operacional estimada (água + produção recuperada). Ele não inclui o custo de instalação ou aquisição do sensor — representa o ganho financeiro recorrente ao longo de um ano de uso.</small><br><br>
+                    while(contador < totalSensores){
+                        valorInstalacao += 399.90;
+                        contador++
+                    }
+                }
 
-        Economia com água: R$ ${economiaAguaAno.toFixed(2)}<br><br>
+                // let investimentoInicial = valorInstalacao;      pontos * valorInstalacao
 
-        Ganhos totais com as sacas no ano: R$ ${valorProducaoComSensor.toFixed(2)}<br><br>
+                // let manutencaoMes = pontos * mensalidadePonto; mensalidade no mes (pontos vezes mensalidade), pra saber quanto q vai ser no mes
 
-        <strong>Total economizado: R$ ${beneficioTotalAno.toFixed(2)}</strong>
+                // let manutencaoAno = 0;
+                // let mes = 1;
 
-        `;
-    }
-  </script>
+                // while (mes <= 12) {
+                //     manutencaoAno = manutencaoAno + manutencaoMes;
+                //     mes = mes + 1;
+                // }
+
+                let mensalidade = 99.90;
+                let mensalidadeAno = 99.90 * 12;
+
+                let custoPrimeiroAno = valorInstalacao + mensalidadeAno;
+
+                exibirResultado.innerHTML = `
+
+                    <h2>Economia com Irrigação</h2>
+
+                    <p>Economia estimada sobre o gasto com água: ${economiaPercentual}%</p>
+
+                    <p>Gasto mensal atual com água: R$ ${valorAguaMes.toFixed(2)} (100%)</p>
+
+                    <p>Economia estimada por mês: R$ ${economiaAguaMes.toFixed(2)} (${economiaPercentual}%)</p>
+
+                    <p>Gasto anual atual com água: R$ ${gastoAguaAno.toFixed(2)} (100%)</p>
+
+                    <p>Economia estimada por ano: R$ ${economiaAguaAno.toFixed(2)} (${economiaPercentual}%)</p>
+
+                    <h2>Ganho na Produção</h2>
+
+                    <p>Perda estimada sem monitoramento: ${perdaSemSensor}%</p>
+
+                    <p>Sacas preservadas: ${sacasPreservadas.toFixed(2)} sacas (${sacasPreservadasPercentual}%)</p>
+
+                    <p>Sacas potencialmente preservadas em relação às perdas: ${sacasRecuperadas.toFixed(2)} sacas (${sacasRecuperadasPercentual}% da produção potencial)</p>
+
+                    <p>Valor potencialmente recuperado: R$ ${valorRecuperado.toFixed(2)} (${sacasRecuperadasPercentual}% do valor da produção potencial)</p>
+
+                    <p>Valor estimado da produção com monitoramento: R$ ${valorProducaoComSensor.toFixed(2)} (${sacasPreservadasPercentual}% do valor da produção potencial)</p>
+
+                    <h2>Benefício Total Estimado por Ano</h2>
+
+                    <p>Economia estimada com água: R$ ${economiaAguaAno.toFixed(2)} (${economiaPercentual}% do gasto anual com água)</p>
+
+                    <p>Valor potencialmente recuperado na produção: R$ ${valorRecuperado.toFixed(2)} (${sacasRecuperadasPercentual}% do valor da produção potencial)</p>
+
+                    <p>Benefício total estimado: R$ ${beneficioTotalAno.toFixed(2)} (${beneficioPercentual.toFixed(2)}% do gasto anual com água)</p>
+
+                `;
+
+                custoSolucao.innerHTML = `
+
+                    <h2>Investimento na Solução</h2>
+
+                    <p>Total de sensores necessários: ${pontos} </p>
+
+                    <p>Custo por sensor: R$${(pontos * 399.90).toFixed(2)} </p>
+
+                    <p>Capacidade de cada sensor por ponto: até 20 hectares</p>
+
+                    <p>Valor da instalação: R$ ${valorInstalacao.toFixed(2)}</p>
+
+                    <p>Mensalidade: R$ ${mensalidade.toFixed(2)}</p>
+
+                    <p>Custo da mensalidade no ano: R$ ${mensalidadeAno.toFixed(2)}</p>
+
+                    <h2>Resultado Financeiro Estimado</h2>
+
+                    <p>Benefício total estimado por ano: R$ ${beneficioTotalAno.toFixed(2)}</p>
+
+                    <p>Custo total da solução no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
+
+                `;
+
+                // <p>Custo total no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
+                // <p>Área da plantação: ${hectares} hectares (100%)</p>
+            }
+        }
+</script>
 </html>
