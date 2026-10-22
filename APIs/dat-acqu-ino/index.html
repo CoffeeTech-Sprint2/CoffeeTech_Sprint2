@@ -1,14 +1,15 @@
 <!doctype html>
-<html>
-
+<html lang="pt-br">
 <head>
-    <title>Graphics</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoffeeTech | Gráfico</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
 
-    <h1>Graphics</h1>
+    <h1>Gráfico da % de umidade ao longo da dia</h1>
     <div style="display: flex;">
         <div style="width: 50%;">
             <canvas id="sensorPorcentagem"></canvas>
@@ -20,9 +21,9 @@
             type: 'line',
             data: {
                 datasets: [{
-                    label: 'Porcentagem',
-                    borderColor: '#63B1BC',
-                    backgroundColor: '#ED145B'
+                    label: '% de umidade',
+                     borderColor: "rgb(89, 67, 44)",
+                     backgroundColor: "rgba(89, 67, 44, 0.10)"
                 }]
             },
             options: {

@@ -21,10 +21,11 @@ const serial = async (
         {
             host: 'localhost',
             user: 'user_insert',
-            password: 'senha',
-            database: 'database',
+            password: 'Sccp@1910',
+            database: 'coffeeTech',
             port: 3306
         }
+        
     ).promise();
 
     // lista as portas seriais disponíveis e procura pelo Arduino
@@ -52,6 +53,8 @@ const serial = async (
         console.log(data);
         const valores = data.split(';');
         const sensorPorcentagem = parseFloat(valores[1]);
+        const acrescimo_sensor2 = 5;
+        const acrescimo_sensor3 = 10;
         // const sensorAnalogico = parseFloat(valores[1]);
 
         // armazena os valores dos sensores nos arrays correspondentes
@@ -63,9 +66,16 @@ const serial = async (
 
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
-                'INSERT INTO medida (sensor_digital) VALUES (?)',
-                [sensorPorcentagem]
-            );
+                'INSERT INTO leitura (umidade, fkSensorLeitura) VALUES (?, ?)',
+                [sensorPorcentagem, 1]);
+            
+            await poolBancoDados.execute(
+                'INSERT INTO leitura (umidade, fkSensorLeitura) VALUES (?, ?)',
+                [sensorPorcentagem + acrescimo_sensor2, 2]);
+            
+            await poolBancoDados.execute(
+                'INSERT INTO leitura (umidade, fkSensorLeitura) VALUES (?, ?)',
+                [sensorPorcentagem + acrescimo_sensor3, 3]);
             console.log("valores inseridos no banco: ", + sensorPorcentagem);
 
         }
