@@ -43,8 +43,8 @@ body{
     font-size: 48px;
     line-height: 1.1;
     font-weight: 400;
-    color: #f4ede0;
-    max-width: 14ch;
+    color: #f4ede096;
+    /* max-width: 14ch; */
 }
 
 .titulo-calculadora p:last-child {
@@ -116,5 +116,5 @@ label{
 }
 
 .card-nota, .card-label{
-    color: #f4ede0;;
+    color: #f4ede096;;
 }
