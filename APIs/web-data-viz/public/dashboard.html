@@ -145,8 +145,9 @@
 
     <script>
       const ctx = document.getElementById("graficoUmidade");
-
+      const MAXIMO = 60;
       const MINIMO = 30;
+      const TOTAL = 100;
       const horas = [
         "12h00",
         "13h00",
@@ -175,7 +176,7 @@
               backgroundColor: "rgba(89, 67, 44, 0.10)",
               borderWidth: 3,
               tension: 0.3,
-              fill: true,
+              // fill: true,
               pointBackgroundColor: "rgb(104, 34, 2)",
               pointBorderColor: "#ffffff",
               pointBorderWidth: 2,
@@ -193,6 +194,28 @@
               pointHoverRadius: 0,
               fill: false,
             },
+            {
+              // Âncora: linha pontilhada no máximo (60%)
+              label: "Máximo (" + MAXIMO + "%)",
+              data: horas.map(() => MAXIMO),
+              borderColor: "rgb(104, 34, 2)",
+              borderWidth: 2,
+              borderDash: [6, 6],
+              pointRadius: 0,
+              pointHoverRadius: 0,
+              fill: false,
+            },
+            // {
+            //   // Total (100%)
+            //   label: "Total",
+            //   data: horas.map(() => TOTAL),
+            //   borderColor: "rgb(104, 34, 2)",
+            //   borderWidth: 2,
+            //   borderDash: [6, 6],
+            //   pointRadius: 0,
+            //   pointHoverRadius: 0,
+            //   fill: false,
+            // }
           ],
         },
         options: {
@@ -212,6 +235,7 @@
           },
           scales: {
             y: {
+              max: 100,
               beginAtZero: true,
               ticks: { callback: (v) => v + "%" },
               grid: { color: "rgba(89, 67, 44, 0.10)" },
