@@ -92,7 +92,7 @@ CONSTRAINT fkUsuarioEmpresa FOREIGN KEY (fkEmpresa) REFERENCES empresa(idEmpresa
 create table propriedade(
 idPropriedade int primary key auto_increment,
 nome_fazenda varchar(45),
-hectares decimal(6,1),
+hectares decimal(6,2),
 cep char(9),
 tipo_solo varchar(45),
 fkEmpresa int,
@@ -125,9 +125,33 @@ CONSTRAINT fkSensorManutencao foreign key (fkSensor) references sensor(idSensor)
 );
 
 insert into empresa (razaoSocial, cnpj) values
-('Fazenda Batatinha', 12345678000195);
+('Empresa Batatinha', 12345678000195);
+
+insert into sensor (localizaçãoInterna, dataInstalacao) values
+('zona 1','2026-10-23'),
+('Zona 2','2026-10-23');
+
+insert into propriedade values
+(default,'Fazenda Batatinha',20.00,'09371-055','Solo Argiloso',1);
 
 select * from empresa;
 
 select * from usuario;
 
+select * from manutencao;
+
+select * from leitura;
+
+select * from sensor;
+
+select 
+    L.umidade,
+    S.localizacaoInterna
+    case 
+        when umidade < 30 then 'Alerta | Umidade abaixo de 30%'
+        when umidade > 60 then 'Alerta | Umidade acima de 60%'
+        else 'Umidade | Faixa normal'
+    end as Alertas
+    from leitura as L
+    join sensor as S on fkLeituraSensor = idSensor;
+    
