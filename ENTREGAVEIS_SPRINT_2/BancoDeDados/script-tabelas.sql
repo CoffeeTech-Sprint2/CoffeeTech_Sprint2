@@ -103,16 +103,17 @@ create table sensor(
 idSensor int primary key auto_increment,
 localizacaoInterna varchar(45),
 fkPropriedade int,
-dataInstalacao datetime,
+dataInstalacao datetime ,
 CONSTRAINT fkPropriedadeSensor foreign key (fkPropriedade) references propriedade(idPropriedade)
 );
 
 create table leitura(
-idLeitura int primary key auto_increment,
+idLeitura int auto_increment,
 umidade decimal(4,1),
-dataHora datetime,
+dataHora datetime default current_timestamp,
 fkSensorLeitura int,
-CONSTRAINT fkLeituraSensor FOREIGN KEY (fkSensorLeitura) references sensor(idSensor)
+CONSTRAINT fkLeituraSensor FOREIGN KEY (fkSensorLeitura) references sensor(idSensor),
+CONSTRAINT pkComposta primary key(idLeitura,fkSensorLeitura)
 );
 
 create table manutencao(
@@ -129,3 +130,4 @@ insert into empresa (razaoSocial, cnpj) values
 select * from empresa;
 
 select * from usuario;
+
