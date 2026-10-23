@@ -54,7 +54,7 @@
         <h1>Calculadora financeira</h1>
 
       <p>
-        Valor de referência: R$ 1.600,00 por saca de café arábica (60 kg).<br>
+        Valor de referência: R$ 1.803,73 por saca de café arábica (60 kg).<br>
         Os resultados são estimativas e podem variar de acordo com as condições da propriedade.
       </p>
 
@@ -166,7 +166,7 @@
 
             } else {
 
-                let valorSaca = 1600;
+                let valorSaca = 1803.73;
 
                 // Porcentagens utilizadas nas estimativas
                 let economiaPercentual = 30;
@@ -236,7 +236,14 @@
                 let custoPrimeiroAno = valorInstalacao + mensalidadeAno;
 
                 economia.innerHTML = `
+                <div class="resultado-financeiro-estimado">
+                    <h2>Resultado Financeiro Estimado</h2>
 
+                    <p>Benefício total estimado por ano: R$ ${beneficioTotalAno.toFixed(2)}</p>
+
+                    <p>Custo total da solução no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
+                </div>
+                
                 <div class="economia-com-irrigacao">
                   <h2>Economia com Irrigação</h2>
 
@@ -256,24 +263,14 @@
 
                     <p>Perda estimada sem monitoramento: ${perdaSemSensor}%</p>
 
-                    <p>Sacas preservadas: ${sacasPreservadas.toFixed(2)} sacas (${sacasPreservadasPercentual}%)</p>
+                    <p>Perda estimada sem monitoramento: ${perdaComSensor}%</p>
 
-                    <p>Sacas potencialmente preservadas em relação às perdas: ${sacasRecuperadas.toFixed(2)} sacas (${sacasRecuperadasPercentual}% da produção potencial)</p>
+                    <p>Sacas preservadas: ${sacasPreservadas.toFixed(2)} sacas (${sacasPreservadasPercentual}%)</p>
 
                     <p>Valor potencialmente recuperado: R$ ${valorRecuperado.toFixed(2)} (${sacasRecuperadasPercentual}% do valor da produção potencial)</p>
 
                     <p>Valor estimado da produção com monitoramento: R$ ${valorProducaoComSensor.toFixed(2)} (${sacasPreservadasPercentual}% do valor da produção potencial)</p>
 
-                </div>
-
-                <div class="beneficio-total-estimado">
-                  <h2>Benefício Total Estimado por Ano</h2>
-
-                    <p>Economia estimada com água: R$ ${economiaAguaAno.toFixed(2)} (${economiaPercentual}% do gasto anual com água)</p>
-
-                    <p>Valor potencialmente recuperado na produção: R$ ${valorRecuperado.toFixed(2)} (${sacasRecuperadasPercentual}% do valor da produção potencial)</p>
-
-                    <p>Benefício total estimado: R$ ${beneficioTotalAno.toFixed(2)} (${beneficioPercentual.toFixed(2)}% do gasto anual com água)</p>
                 </div>
                 `;
 
@@ -283,7 +280,7 @@
 
                     <p>Total de sensores necessários: ${pontos} </p>
 
-                    <p>Custo por sensor: R$${(pontos * 399.90).toFixed(2)} </p>
+                    <p>Custo por sensor adicional: R$${(pontos * 399.90).toFixed(2)} </p>
 
                     <p>Capacidade de cada sensor por ponto: até 20 hectares</p>
 
@@ -294,13 +291,7 @@
                     <p>Custo da mensalidade no ano: R$ ${mensalidadeAno.toFixed(2)}</p>
                 </div>
 
-                <div class="resultado-financeiro-estimado">
-                  <h2>Resultado Financeiro Estimado</h2>
-
-                    <p>Benefício total estimado por ano: R$ ${beneficioTotalAno.toFixed(2)}</p>
-
-                    <p>Custo total da solução no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
-                </div>
+                
                     
                 `;
 
