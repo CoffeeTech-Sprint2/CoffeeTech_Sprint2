@@ -41,9 +41,9 @@
     </header>
 
     <div class="titulo-calculadora">
-      <p>CALCULADORA DE RETORNO</p>
+      <p>CALCULADORA DE FINANCEIRA</p>
       <h2>Qual é o retorno para a sua propriedade?</h2>
-      <p>
+      <p class="info">
         Insira os dados da sua plantação e veja a estimativa de receita e
         economia com o monitoramento inteligente.
       </p>
@@ -53,24 +53,27 @@
       <div class="bloco-info">
         <h1>Calculadora financeira</h1>
 
-    <p>Valor de referência: R$ 1.600,00 por saca de café arábica (60 kg).</p>
+      <p>
+        Valor de referência: R$ 1.600,00 por saca de café arábica (60 kg).<br>
+        Os resultados são estimativas e podem variar de acordo com as condições da propriedade.
+      </p>
 
-    <p>Os resultados são estimativas e podem variar de acordo com as condições da propriedade.</p>
+      <p></p>
 
-    <h3>Dados da Irrigação</h3>
+      <h3>Dados da Irrigação</h3>
 
-    <p>Valor gasto por mês com água (R$)</p>
-    <input type="number" id="ipt_valorAgua" placeholder="Ex: 40000">
+      <p>Valor gasto por mês com água (R$)</p>
+      <input type="number" id="ipt_valorAgua" placeholder="Ex: 40000">
 
-    <h3>Dados da Produção</h3>
+      <h3>Dados da Produção</h3>
 
-    <p>Produção potencial de sacas por ano, antes das perdas</p>
-    <input type="number" id="ipt_sacas" placeholder="Ex: 600">
+      <p>Produção potencial de sacas por ano, antes das perdas</p>
+      <input type="number" id="ipt_sacas" placeholder="Ex: 600">
 
-    <h3>Dados da Propriedade</h3>
+      <h3>Dados da Propriedade</h3>
 
-    <p>Área da plantação (hectares)</p>
-    <input type="number" id="ipt_hectares" placeholder="Ex: 10">
+      <p>Área da plantação (hectares)</p>
+      <input type="number" id="ipt_hectares" placeholder="Ex: 10">
 
     <!-- <h3>Total sensores</h3>
     <input type="number" id="ipt_sensores" placeholder="Total de sensores"> -->
@@ -83,14 +86,26 @@
    
       </div>
 
-      <div class="bloco-resultado" id="resultado">
+      <!-- <div class="bloco-resultado" id="resultado">
         <div class="card-resultado card-verde">
           <div class="card-label">Sua estimativa</div>
           <div class="card-nota">
             Preencha os dados ao lado e clique em calcular para ver o retorno.
-            <div id="exibirResultado"></div> 
-            <div id="custoSolucao"></div>
+            
+          </div> -->
+         
+          <div class="resultados" id="resultadosContainer">
+            <!-- <label for="resultadosContainer">Preencha os dados ao lado e clique em calcular para ver o retorno.</label> -->
+
+            <div class="exibirResultado" id="economia">
+              
+            </div>
+
+            <div class="custoSolucao" id="investimentoNaSolucao">
+              
+            </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -220,9 +235,10 @@
 
                 let custoPrimeiroAno = valorInstalacao + mensalidadeAno;
 
-                exibirResultado.innerHTML = `
+                economia.innerHTML = `
 
-                    <h2>Economia com Irrigação</h2>
+                <div class="economia-com-irrigacao">
+                  <h2>Economia com Irrigação</h2>
 
                     <p>Economia estimada sobre o gasto com água: ${economiaPercentual}%</p>
 
@@ -233,7 +249,9 @@
                     <p>Gasto anual atual com água: R$ ${gastoAguaAno.toFixed(2)} (100%)</p>
 
                     <p>Economia estimada por ano: R$ ${economiaAguaAno.toFixed(2)} (${economiaPercentual}%)</p>
+                </div>
 
+                <div class="ganho-na-producao">
                     <h2>Ganho na Produção</h2>
 
                     <p>Perda estimada sem monitoramento: ${perdaSemSensor}%</p>
@@ -246,19 +264,22 @@
 
                     <p>Valor estimado da produção com monitoramento: R$ ${valorProducaoComSensor.toFixed(2)} (${sacasPreservadasPercentual}% do valor da produção potencial)</p>
 
-                    <h2>Benefício Total Estimado por Ano</h2>
+                </div>
+
+                <div class="beneficio-total-estimado">
+                  <h2>Benefício Total Estimado por Ano</h2>
 
                     <p>Economia estimada com água: R$ ${economiaAguaAno.toFixed(2)} (${economiaPercentual}% do gasto anual com água)</p>
 
                     <p>Valor potencialmente recuperado na produção: R$ ${valorRecuperado.toFixed(2)} (${sacasRecuperadasPercentual}% do valor da produção potencial)</p>
 
                     <p>Benefício total estimado: R$ ${beneficioTotalAno.toFixed(2)} (${beneficioPercentual.toFixed(2)}% do gasto anual com água)</p>
-
+                </div>
                 `;
 
-                custoSolucao.innerHTML = `
-
-                    <h2>Investimento na Solução</h2>
+                 investimentoNaSolucao.innerHTML = `
+                <div class="investimento-na-solucao">
+                  <h2>Investimento na Solução</h2>
 
                     <p>Total de sensores necessários: ${pontos} </p>
 
@@ -271,13 +292,16 @@
                     <p>Mensalidade: R$ ${mensalidade.toFixed(2)}</p>
 
                     <p>Custo da mensalidade no ano: R$ ${mensalidadeAno.toFixed(2)}</p>
+                </div>
 
-                    <h2>Resultado Financeiro Estimado</h2>
+                <div class="resultado-financeiro-estimado">
+                  <h2>Resultado Financeiro Estimado</h2>
 
                     <p>Benefício total estimado por ano: R$ ${beneficioTotalAno.toFixed(2)}</p>
 
                     <p>Custo total da solução no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
-
+                </div>
+                    
                 `;
 
                 // <p>Custo total no primeiro ano: R$ ${custoPrimeiroAno.toFixed(2)}</p>
