@@ -129,7 +129,8 @@ insert into empresa (razaoSocial, cnpj) values
 
 insert into sensor (localizaçãoInterna, dataInstalacao) values
 ('zona 1','2026-10-23'),
-('Zona 2','2026-10-23');
+('Zona 2','2026-10-23'),
+('zona 3','2026-1-23');
 
 insert into propriedade values
 (default,'Fazenda Batatinha',20.00,'09371-055','Solo Argiloso',1);
