@@ -21,9 +21,9 @@ const serial = async (
         {
             host: 'localhost',
             user: 'user_insert',
-            password: 'Admin@123',
-            database: 'coffeetech',
-            port: 3307
+            password: 'Mafusauro123*',
+            database: 'coffeeTech',
+            port: 3306
         }
         
     ).promise();
@@ -69,14 +69,14 @@ const serial = async (
                 'INSERT INTO leitura (umidade, fkSensorLeitura) VALUES (?, ?)',
                 [sensorPorcentagem, 1]);
             
-            await poolBancoDados.execute(
-                'INSERT INTO leitura (umidade, fkSensorLeitura) VALUES (?, ?)',
-                [sensorPorcentagem + acrescimo_sensor2, 2]);
+            // await poolBancoDados.execute(
+            //     'INSERT INTO leitura (umidade, fkSensorLeitura) VALUES (?, ?)',
+            //     [sensorPorcentagem + acrescimo_sensor2, 2]);
             
-            await poolBancoDados.execute(
-                'INSERT INTO leitura (umidade, fkSensorLeitura) VALUES (?, ?)',
-                [sensorPorcentagem + acrescimo_sensor3, 3]);
-            console.log("valores inseridos no banco: ", + sensorPorcentagem);
+            // await poolBancoDados.execute(
+            //     'INSERT INTO leitura (umidade, fkSensorLeitura) VALUES (?, ?)',
+            //     [sensorPorcentagem + acrescimo_sensor3, 3]);
+            // console.log("valores inseridos no banco: ", + sensorPorcentagem);
 
         }
 
