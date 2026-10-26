@@ -168,35 +168,29 @@
 
                 let valorSaca = 1803.73;
 
-                // Porcentagens utilizadas nas estimativas
                 let economiaPercentual = 30;
                 let perdaSemSensor = 30;
                 let perdaComSensor = 5;
-                let sacasPreservadasPercentual = 100 - perdaComSensor;
-                let sacasRecuperadasPercentual = perdaSemSensor - perdaComSensor;
+                let producaoComSensorPercentual = 100 - perdaComSensor;          // ALTERADO (antes: sacasPreservadasPercentual)
+                let sacasPreservadasPercentual = perdaSemSensor - perdaComSensor; // ALTERADO (antes: sacasRecuperadasPercentual)
 
-                // Economia com água
                 let economiaAguaMes = valorAguaMes * economiaPercentual / 100;
                 let economiaAguaAno = economiaAguaMes * 12;
                 let gastoAguaAno = valorAguaMes * 12;
 
-                // Produção
                 let sacasPerdidasSemSensor = sacas * perdaSemSensor / 100;
                 let sacasPerdidasComSensor = sacas * perdaComSensor / 100;
 
-                let sacasPreservadas = sacas - sacasPerdidasComSensor;
-                let sacasRecuperadas = sacasPerdidasSemSensor - sacasPerdidasComSensor;
+                let sacasComSensor = sacas - sacasPerdidasComSensor;                     // ALTERADO (antes: sacasPreservadas) - 570
+                let sacasPreservadas = sacasPerdidasSemSensor - sacasPerdidasComSensor;  // ALTERADO (antes: sacasRecuperadas) - 150
 
-                let valorRecuperado = sacasRecuperadas * valorSaca;
-                let valorProducaoComSensor = sacasPreservadas * valorSaca;
+                let valorRecuperado = sacasPreservadas * valorSaca;          // ALTERADO (antes: sacasRecuperadas)
+                let valorProducaoComSensor = sacasComSensor * valorSaca;     // ALTERADO (antes: sacasPreservadas)
 
-                // Benefício estimado anual
                 let beneficioTotalAno = economiaAguaAno + valorRecuperado;
 
-                // Porcentagem do benefício em relação ao gasto anual com água
                 let beneficioPercentual = beneficioTotalAno / gastoAguaAno * 100;
 
-                // Cada ponto atende até 20 hectares
                 let pontos = 0;
                 let areaCoberta = 0;
 
@@ -207,7 +201,7 @@
 
                 // Custos da solução                    
                 let totalSensores = pontos;                //   Number(ipt_sensores.value)
-                let valorInstalacao = 1600.1;      // 399.90 ---> Valor antigo
+                let valorInstalacao = 1600.1;              // 399.90 ---> Valor antigo
 
                 if(totalSensores >= 1){
                     let contador = 0;
@@ -263,13 +257,15 @@
 
                     <p>Perda estimada sem monitoramento: ${perdaSemSensor}%</p>
 
-                    <p>Perda estimada sem monitoramento: ${perdaComSensor}%</p>
+                    <p>Perda estimada com monitoramento: ${perdaComSensor}%</p>
 
-                    <p>Sacas preservadas: ${sacasPreservadas.toFixed(2)} sacas (${sacasPreservadasPercentual}%)</p>
+                    <p>Sacas preservadas pelo sistema: ${sacasPreservadas.toFixed(2)} sacas (${sacasPreservadasPercentual}% da produção potencial)</p>
 
-                    <p>Valor potencialmente recuperado: R$ ${valorRecuperado.toFixed(2)} (${sacasRecuperadasPercentual}% do valor da produção potencial)</p>
+                    <p>Valor potencialmente recuperado: R$ ${valorRecuperado.toFixed(2)}</p>
 
-                    <p>Valor estimado da produção com monitoramento: R$ ${valorProducaoComSensor.toFixed(2)} (${sacasPreservadasPercentual}% do valor da produção potencial)</p>
+                    <p>Produção estimada com monitoramento: ${sacasComSensor.toFixed(2)} sacas (${producaoComSensorPercentual}% da produção potencial)</p>
+
+                    <p>Valor estimado da produção com monitoramento: R$ ${valorProducaoComSensor.toFixed(2)}</p>
 
                 </div>
                 `;
