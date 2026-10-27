@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/dashboard.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Outfit:wght@400;500;600&display=swap"
       rel="stylesheet"
@@ -23,7 +23,9 @@
   <body>
     <header class="header">
       <div class="div-logo">
-        <a href="index.html"><img src="img/logo.png" alt="logo coffee tech" class="logo" /></a>
+        <a href="index.html"
+          ><img src="img/logo.png" alt="logo coffee tech" class="logo"
+        /></a>
         <h1 class="titulo"><a href="index.html">Coffee Tech</a></h1>
       </div>
 
@@ -43,12 +45,33 @@
       </nav>
     </header>
 
-    <main class="dashboard">
-      <div class="tituloGrafico">
-        <h3>KPIs</h3>
-      </div>
+    <div class="alerta">
+      <div class="caixinhaAlerta">
+        <!-- Ícone de alerta vazado (somente contorno) -->
+        <svg class="alerta-icone" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 6 L44 40 H4 Z" />
+          <path d="M24 19 V29" />
+          <circle cx="24" cy="34" r="0.8" />
+        </svg>
 
+        <div class="alerta-texto">
+          <p class="alerta-titulo">Umidade no limite mínimo</p>
+          <p class="alerta-descricao">
+            O solo atingiu 30%, o nível mínimo recomendado para o café Arábica.
+            Considere irrigar a área nas próximas horas.
+          </p>
+        </div>
+
+        <span class="alerta-hora">Hoje, 20h00</span>
+      </div>
+    </div>
+
+    <main class="dashboard">
       <div class="containerKPIs">
+        <div class="tituloKPIs">
+          <h3>KPIs</h3>
+        </div>
+
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Umidade atual</span>
           <span class="kpi-valor">31%</span>
@@ -82,34 +105,14 @@
                 <span class="kpi-valor">Atenção</span>
             </div> -->
       </div>
-
-      <div class="alerta">
-        <div class="caixinhaAlerta">
-          <!-- Ícone de alerta vazado (somente contorno) -->
-          <svg class="alerta-icone" viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M24 6 L44 40 H4 Z" />
-            <path d="M24 19 V29" />
-            <circle cx="24" cy="34" r="0.8" />
-          </svg>
-
-          <div class="alerta-texto">
-            <p class="alerta-titulo">Umidade no limite mínimo</p>
-            <p class="alerta-descricao">
-              O solo atingiu 30%, o nível mínimo recomendado para o café
-              Arábica. Considere irrigar a área nas próximas horas.
-            </p>
-          </div>
-
-          <span class="alerta-hora">Hoje, 20h00</span>
+      <div class="grafico">
+        <div class="tituloKPIs">
+          <h3>Gráfico da % de umidade ao longo do dia</h3>
         </div>
-      </div>
 
-      <div class="tituloGrafico">
-        <h3>Gráfico da % de umidade ao longo do dia</h3>
-      </div>
-
-      <div class="canva">
-        <canvas id="graficoUmidade"></canvas>
+        <div class="canva">
+          <canvas id="graficoUmidade" class="canva"></canvas>
+        </div>
       </div>
     </main>
 
@@ -117,7 +120,11 @@
       <nav class="nav-footer">
         <div class="container-logo">
           <picture>
-            <img src="img/logo.png" alt="logo coffee tech" class="footer-logo" />
+            <img
+              src="img/logo.png"
+              alt="logo coffee tech"
+              class="footer-logo"
+            />
             <h4 class="footer-titulo">Coffee Tech</h4>
           </picture>
 
@@ -212,7 +219,7 @@
               pointRadius: 0,
               pointHoverRadius: 0,
               fill: false,
-            }
+            },
           ],
         },
         options: {
