@@ -77,7 +77,7 @@ O sistema faz a leitura analógica do sensor, converte os dados em porcentagem d
 ![DIAGRAMA](./DOCUMENTACAO/img/diagrama.png)
 
 </details>
----
+
 
 ## 📦 Entregáveis
 
@@ -86,13 +86,10 @@ O sistema faz a leitura analógica do sensor, converte os dados em porcentagem d
 | Entregável | Link |
 |------------|------|
 | 📄 Documentação | [Abrir](https://bandteccom-my.sharepoint.com/:w:/g/personal/julia_bsantos_sptech_school/IQBOTKKde-VrRLdML1pMiimxAZ4IKQYrDErZ1yde8GPFSow?e=cbqTyH) |
-| 🗄️ DER (Diagrama Entidade-Relacionamento) | _em breve_ |
 | 📊 Especificação da dashboard | [Abrir](https://bandteccom-my.sharepoint.com/:w:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B923F4B97-125E-4FCC-A8B3-AAC5A4EF4964%7D&file=Grupo4_EspecificacaoDashboard.docx&action=default&mobileredirect=true) |
 | 📋 Backlog | [Abrir](https://bandteccom-my.sharepoint.com/:x:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B1BACAEBC-3D99-4B11-A0DB-67F4AA72C580%7D&file=Product_Backlog_coffeTech.xlsx&action=default&mobileredirect=true) |
 | 📉 Gráfico de burndown | [Abrir](https://bandteccom-my.sharepoint.com/:x:/r/personal/julia_bsantos_sptech_school/_layouts/15/Doc.aspx?sourcedoc=%7B8C98FE28-C8DB-410E-8A25-8AFF6DB7EA6B%7D&file=Planilha%20dos%20riscos.xlsx&action=default&mobileredirect=true) |
-| 🌐 Site estático / Dashboard | _em breve_ |
-| 💰 Simulador financeiro | _em breve_ |
-| 📽️ Apresentação | _em breve_ |
+| 📽️ Apresentação | [Abrir](https://canva.link/i2cybqn0gqqqcy9) |
 
 <details>
 <summary><strong>📄 Documentação</strong></summary>
@@ -182,21 +179,13 @@ O sistema faz a leitura analógica do sensor, converte os dados em porcentagem d
 
 </details>
 
-<details>
-<summary><strong>💰 Simulador financeiro</strong></summary>
-
-<br>
-
-_em breve_
-
-</details>
 
 <details>
 <summary><strong>📽️ Apresentação</strong></summary>
 
 <br>
 
-_em breve_
+[Abrir](https://canva.link/i2cybqn0gqqqcy9)
 
 </details>
 
@@ -211,8 +200,8 @@ _em breve_
 | Banco de dados | `▰▰▰▰▰▰▰▰▰▰ 100%` |
 | Simulador financeiro | `▰▰▰▰▰▰▰▰▰▱ 90%` |
 | Documentação | `▰▰▰▰▰▰▰▰▰▰ 100%` |
-| Site final | `▰▰▰▰▰▰▰▰▰▱ 90%` |
-| Apresentação | `▱▱▱▱▱▱▱▱▱▱ 0%` |
+| Site final | `▰▰▰▰▰▰▰▰▰▰ 100%` |
+| Apresentação | `▰▰▰▰▰▰▰▰▰▰ 100%` |
 
 > O **progresso geral** é a média simples dos 7 entregáveis: `▰▰▰▰▰▰▰▰▱▱ 80%`
 

@@ -127,7 +127,7 @@ CONSTRAINT fkSensorManutencao foreign key (fkSensor) references sensor(idSensor)
 insert into empresa (razaoSocial, cnpj) values
 ('Empresa Batatinha', 12345678000195);
 
-insert into sensor (localizaçãoInterna, dataInstalacao) values
+insert into sensor (localizacaoInterna, dataInstalacao) values
 ('zona 1','2026-10-23'),
 ('Zona 2','2026-10-23'),
 ('zona 3','2026-1-23');
@@ -154,5 +154,5 @@ select
         else 'Umidade | Faixa normal'
     end as Alertas
     from leitura as L
-    join sensor as S on fkLeituraSensor = idSensor;
+    join sensor as S on fkSensorLeitura = idSensor;
     
