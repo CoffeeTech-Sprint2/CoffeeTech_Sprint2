@@ -154,5 +154,5 @@ select
         else 'Umidade | Faixa normal'
     end as Alertas
     from leitura as L
-    join sensor as S on fkLeituraSensor = idSensor;
+    join sensor as S on fkSensorLeitura = idSensor;
     
