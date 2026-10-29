@@ -22,7 +22,7 @@ const serial = async (
             host: 'localhost',
             user: 'user_insert',
             password: 'Admin@123',
-            database: 'coffeetech',
+            database: 'coffeeTech',
             port: 3307
         }
         
