@@ -38,6 +38,47 @@
             text-align: left;
         }
 
+        .saudacao {
+            margin:30px;
+            margin-bottom:10px;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        .nomeSensor {
+            display: flex;
+            font-size: 20px;
+            text-align: center;
+            align-self: center;
+            font-style: bold;
+        }
+        
+        .sltSensor {
+            display:flex;
+            /* flex-direction: column; */
+            text-align: center;
+            justify-content: center;
+            gap:100px;
+            padding-top: 30px;
+
+        }
+
+        .selectSensor {
+            width:200px;
+            justify-content: center;
+            align-self: center;
+            border-radius: 8px;
+            font-size: 15px;
+            padding: 10px;
+        }
+
+        .selectSensor{
+            display: flex;
+            flex-direction: column;
+        }
+
         /* KPIs */
         .containerKPIs {
             display: grid;
@@ -90,7 +131,7 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            width: 1400px;
+            width: 1200px;
             padding: 20px 24px;
             background-color: var(--bege-claro);
             border: 1px solid var(--terra);

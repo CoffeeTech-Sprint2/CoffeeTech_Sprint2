@@ -45,7 +45,37 @@
       </nav>
     </header>
 
-    <div class="alerta">
+    <h3 class="saudacao">Olá! <br>
+      Vamos para mais um dia?</h3>
+
+
+        
+    <div class="sltSensor">
+        <div class="faseCafe">
+        
+        <span class="nomeSensor">Fase atual: <b>maturação</b></span>
+        <span class="nomeSensor">Selecione a fase atual da plantação:</span>
+        <select class="selectSensor">
+        <option value="1">Vegetação</option>
+        <option value="2">Indução</option>
+        <option value="3">Florada</option>
+        <option value="4">Granação</option>
+        <option value="5">Maturação</option>
+        </select>
+        </div>
+
+        <div class="qualSensor">
+        <span class="nomeSensor">Sensor selecionado: <b> sensor leste</b></span>
+        <span class="nomeSensor">Selecione seu sensor: </span>
+        <select class="selectSensor">
+        <option value="1">Sensor leste</option>
+        <option value="2">Sensor sul</option>
+        </select>
+        </div>
+        
+      </div>
+
+          <div class="alerta">
       <div class="caixinhaAlerta">
         <!-- Ícone de alerta vazado (somente contorno) -->
         <svg class="alerta-icone" viewBox="0 0 48 48" aria-hidden="true">
@@ -57,7 +87,7 @@
         <div class="alerta-texto">
           <p class="alerta-titulo">Umidade no limite mínimo</p>
           <p class="alerta-descricao">
-            O solo atingiu 30%, o nível mínimo recomendado para o café Arábica.
+            O solo atingiu 29%, abaixo do nível mínimo recomendado para o café Arábica.
             Considere irrigar a área nas próximas horas.
           </p>
         </div>
@@ -65,23 +95,26 @@
         <span class="alerta-hora">Hoje, 20h00</span>
       </div>
     </div>
-
     <main class="dashboard">
+      
+
       <div class="containerKPIs">
+
         <div class="tituloKPIs">
           <h3>KPIs</h3>
+          
         </div>
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Umidade atual</span>
-          <span class="kpi-valor">30%</span>
+          <span class="kpi-valor">29%</span>
           <span class="kpi-ancora">Mínimo desejável: 30%</span>
           <span class="kpi-ancora">Máximo desejável: 60%</span>
         </div>
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Mínima do dia</span>
-          <span class="kpi-valor">30%</span>
+          <span class="kpi-valor">29%</span>
           <span class="kpi-ancora">Mínimo desejável: 30%</span>
           <span class="kpi-ancora">Máximo desejável: 60%</span>
         </div>
@@ -95,7 +128,7 @@
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Média do dia</span>
-          <span class="kpi-valor">40,1%</span>
+          <span class="kpi-valor">37,8%</span>
           <span class="kpi-ancora">Mínimo desejável: 30%</span>
           <span class="kpi-ancora">Máximo desejável: 60%</span>
         </div>
@@ -186,7 +219,7 @@
           datasets: [
             {
               label: "% de umidade",
-              data: [40, 43, 48, 39, 42, 44, 40, 35, 30],
+              data: [48, 46, 43, 40, 37, 35, 32, 30, 29],
               borderColor: "rgb(89, 67, 44)",
               backgroundColor: "rgba(89, 67, 44, 0.10)",
               borderWidth: 3,
