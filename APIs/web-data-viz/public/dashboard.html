@@ -87,7 +87,7 @@
         <div class="alerta-texto">
           <p class="alerta-titulo">Umidade no limite mínimo</p>
           <p class="alerta-descricao">
-            O solo atingiu 29%, abaixo do nível mínimo recomendado para o café Arábica.
+            O solo atingiu 39%, abaixo do nível mínimo recomendado para o café Arábica.
             Considere irrigar a área nas próximas horas.
           </p>
         </div>
@@ -108,29 +108,29 @@
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Umidade atual</span>
           <span class="kpi-valor">29%</span>
-          <span class="kpi-ancora">Mínimo desejável: 30%</span>
-          <span class="kpi-ancora">Máximo desejável: 60%</span>
+          <span class="kpi-ancora">Mínimo desejável: 40%</span>
+          <span class="kpi-ancora">Máximo desejável: 50%</span>
         </div>
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Mínima do dia</span>
-          <span class="kpi-valor">29%</span>
-          <span class="kpi-ancora">Mínimo desejável: 30%</span>
-          <span class="kpi-ancora">Máximo desejável: 60%</span>
+          <span class="kpi-valor">39%</span>
+          <span class="kpi-ancora">Mínimo desejável: 40%</span>
+          <span class="kpi-ancora">Máximo desejável: 50%</span>
         </div>
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Máxima do dia</span>
-          <span class="kpi-valor">48%</span>
-          <span class="kpi-ancora">Mínimo desejável: 30%</span>
-          <span class="kpi-ancora">Máximo desejável: 60%</span>
+          <span class="kpi-valor">49%</span>
+          <span class="kpi-ancora">Mínimo desejável: 40%</span>
+          <span class="kpi-ancora">Máximo desejável: 50%</span>
         </div>
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Média do dia</span>
-          <span class="kpi-valor">37,8%</span>
-          <span class="kpi-ancora">Mínimo desejável: 30%</span>
-          <span class="kpi-ancora">Máximo desejável: 60%</span>
+          <span class="kpi-valor">44,8%</span>
+          <span class="kpi-ancora">Mínimo desejável: 40%</span>
+          <span class="kpi-ancora">Máximo desejável: 50%</span>
         </div>
 
         <!-- <div class="caixinhaKPIs kpi-alerta">
@@ -193,8 +193,8 @@
 
     <script>
       const ctx = document.getElementById("graficoUmidade");
-      const MAXIMO = 60;
-      const MINIMO = 30;
+      const MAXIMO = 50;
+      const MINIMO = 40;
       const TOTAL = 100;
       const horas = [
         "12h00",
@@ -219,7 +219,7 @@
           datasets: [
             {
               label: "% de umidade",
-              data: [48, 46, 43, 40, 37, 35, 32, 30, 29],
+              data: [49, 48, 47, 47, 43, 45, 45, 41, 39],
               borderColor: "rgb(89, 67, 44)",
               backgroundColor: "rgba(89, 67, 44, 0.10)",
               borderWidth: 3,
