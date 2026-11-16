@@ -51,12 +51,13 @@
 
         
     <div class="sltSensor">
-        <div class="faseCafe">
         
-        <span class="nomeSensor">Fase atual: <b>dormência</b></span>
+      <div class="faseCafe">
+          
+        <span class="nomeSensor" id="faseAtualNome">Fase atual: <b>dormência</b></span>
         <span class="nomeSensor">Selecione a fase atual da plantação:</span>
-        <select class="selectSensor">
-        <option value="1">Crescimento</option>
+        <select class="selectSensor" id="slct_fase" onchange="mudarLimiares()">
+        <option value="1">Crescimento Vegetativo</option>
         <option value="2">Dormência</option>
         <option value="3">Florada</option>
         <option value="4">Granação</option>
@@ -88,7 +89,7 @@
         <div class="alerta-texto">
           <p class="alerta-titulo">Umidade no limite mínimo</p>
           <p class="alerta-descricao">
-            O solo atingiu 29%, abaixo do nível mínimo recomendado para o café Arábica.
+            O solo atingiu 39%, abaixo do nível mínimo recomendado para o café Arábica.
             Considere irrigar a área nas próximas horas.
           </p>
         </div>
@@ -194,8 +195,8 @@
 
     <script>
       const ctx = document.getElementById("graficoUmidade");
-      const MAXIMO = 50;
-      const MINIMO = 40;
+      let MAXIMO = 50;
+      let MINIMO = 40;
       const TOTAL = 100;
       const horas = [
         "12h00",
@@ -213,7 +214,7 @@
       Chart.defaults.font.size = 13;
       Chart.defaults.color = "#5a4a3f";
 
-      new Chart(ctx, {
+      let meuGrafico = new Chart(ctx, {
         type: "line",
         data: {
           labels: horas,
@@ -233,7 +234,7 @@
               pointHoverRadius: 7,
             },
             {
-              // Âncora: linha pontilhada no mínimo (30%)
+              // Âncora: linha pontilhada no mínimo
               label: "Mínimo (" + MINIMO + "%)",
               data: horas.map(() => MINIMO),
               borderColor: "rgb(104, 34, 2)",
@@ -244,7 +245,7 @@
               fill: false,
             },
             {
-              // Âncora: linha pontilhada no máximo (60%)
+              // Âncora: linha pontilhada no máximo 
               label: "Máximo (" + MAXIMO + "%)",
               data: horas.map(() => MAXIMO),
               borderColor: "rgb(104, 34, 2)",
@@ -286,6 +287,46 @@
           },
         },
       });
+
+      function mudarLimiares(){
+        let faseAtual = slct_fase.value;
+        let nomeFaseAtual = "Dormência";
+
+        if(faseAtual == '1'){
+          MAXIMO = 80;
+          MINIMO = 60;
+          nomeFaseAtual = "Crescimento";
+        }else if(faseAtual == '2'){
+          MAXIMO = 50;
+          MINIMO = 40;
+          nomeFaseAtual = "Dormência";
+        }else if(faseAtual == '3'){
+          MAXIMO = 80;
+          MINIMO = 70;
+          nomeFaseAtual = "Florada";
+        }else if(faseAtual == '4'){
+          MAXIMO = 85;
+          MINIMO = 75;
+          nomeFaseAtual = "Granação";
+        }else if (faseAtual == '5'){
+          MAXIMO = 65;
+          MINIMO = 50;
+          nomeFaseAtual = "Maturação";        
+        }else{
+          MAXIMO = 50;
+          MINIMO = 40;
+          nomeFaseAtual = "Colheita";
+        }
+        faseAtualNome.innerHTML = `Fase atual: <b>${nomeFaseAtual}</b>`
+        
+        meuGrafico.data.datasets[1].data = horas.map(() => MINIMO);
+        meuGrafico.data.datasets[1].label = "Mínimo (" + MINIMO + "%)";
+
+        meuGrafico.data.datasets[2].data = horas.map(() => MAXIMO);
+        meuGrafico.data.datasets[2].label = "Máximo (" + MAXIMO + "%)";
+
+        meuGrafico.update();
+      }
     </script>
   </body>
 </html>
