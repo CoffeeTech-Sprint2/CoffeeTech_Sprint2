@@ -39,12 +39,73 @@
         <h4>3 sensores em nivel critico!</h4>
         <p> umidade da plantação: todas as zonas</p>
     </div>
+<div class="containerPaiTitulo">
+    <div>
+        <h4>VISÃO DA PLANTAÇÃO</h4>
+        <h2>Cada leitura, uma decisão melhor.</h2>
+        <h4>Café arabica/monitoramento do solo</h4>
+    </div>
+    <div>
+        <p>PROTOTIPO ° DADOS ILUSTRATIVOS</p>
+    </div>
+</div>
 
-    
+    <div class="containerpaikpi">
+        <div class="kpis">
+            <h5>sensores monitorados</h5>
+            <p>24 distribuidos em 3 zonas</p>
+        </div>
 
+        <div class="kpis">
+            <h5>nivel critico</h5>
+            <p>03 Prioridade de avaliação</p>
+        </div>
 
+        <div class="kpis">
+            <h5>Em atenção</h5>
+            <p>05 Acompanhar a evolução</p>
+        </div>
 
+        <div class="kpis">
+            <h5>Em faixa adequada</h5>
+            <p>16 Manter acompanhamento</p>
+        </div>
+    </div>
 
+    <div class="divPaifiltro">
+
+        <div class="selectfiltro">
+            <span>Zona / Seção da plantação</span>
+            <select id="">
+                <option value="">todas as zonas</option>
+                <option value="">zona A</option>
+                <option value="">zona B</option>
+                <option value="">zona C</option>
+                <option value="">zona D</option>
+            </select>
+        </div>
+        <div class="selectfiltro">
+            <span>nivel de atenção</span>
+            <select id="">
+                <option value="">todos os niveis</option>
+                <option value="">Critico</option>
+                <option value="">Atenção</option>
+                <option value="">Normal</option>
+            </select>
+        </div>
+        <div class="selectfiltro">
+            <span>CT-XXX</span>
+            <input type="text" placeholder="Pesquisar sensor">
+        </div>
+        <div>
+            <span onclick="limpar()">limpar Filtros</span>
+        </div>
+        <div class="selectfiltro">
+            <h4>Escopo: todas as zonas</h4>
+            <p>24 sensores encontrados</p>
+        </div>
+        
+    </div>
 
 
 
@@ -89,3 +150,8 @@
     </footer>
   </body>
 </html>
+<script>
+    function limpar() {
+
+    }
+</script>
