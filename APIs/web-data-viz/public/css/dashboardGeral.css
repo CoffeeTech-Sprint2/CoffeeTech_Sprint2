@@ -1,0 +1,136 @@
+body {
+    background-color: #f3ede3;
+    color: #4a2c1d;
+}
+
+.alerta {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    color: #ffffff;
+    padding: 12px 20px;
+    margin: 0;
+}
+
+.alerta h4 {
+    color: #ffffff;
+    font-size: 15px;
+    color: #4a2c1d;
+}
+
+.alerta h4::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #e74c3c;
+    margin-right: 8px;
+}
+
+.alerta p {
+    color: #e8dcc8;
+    font-size: 12px;
+    color: #2b1409;
+}
+.containerPaiTitulo {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 0;
+}
+
+.containerPaiTitulo h4 {
+    font-size: 11px;
+    font-weight: normal;
+}
+
+.containerPaiTitulo h2 {
+    font-size: 28px;
+    margin: 6px 0;
+}
+
+.containerPaiTitulo  div:last-child {
+    text-align: right;
+}
+
+.containerPaiTitulo div:last-child p:first-child {
+    background-color: #e8dcc8;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    margin-bottom: 12px;
+    color: #2b1409;
+}
+
+
+.containerpaikpi {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 20px;
+}
+
+.kpis {
+    background-color: #fffaf0;
+    border: 1px solid #e8dcc8;
+    flex: 1;
+    border-radius: 12px;
+    padding: 16px;
+    position: relative;
+}
+.kpis h5 {
+    font-size: 13px;
+    font-weight: normal;
+    margin-bottom: 8px;
+    color: #4a2c1d;
+}
+
+.kpis p {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 12px;
+    color: #6b5444;
+}
+
+.kpis strong {
+    font-size: 36px;
+    color: #2b1409;
+}
+
+
+.divPaifiltro {
+    margin: 12px 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: #fffaf0;
+    border: 1px solid #e8dcc8;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.selectfiltro {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.selectfiltro span {
+    font-size: 12px;
+}
+
+.selectfiltro select,
+.selectfiltro input {
+    padding: 10px;
+    border: 1px solid #e8dcc8;
+    border-radius: 8px;
+    background-color: #fffaf0;
+    color: #4a2c1d;
+    min-width: 180px;
+}
+
+.selectfiltro p {
+    font-size: 12px;
+}
