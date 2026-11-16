@@ -134,3 +134,249 @@ body {
 .selectfiltro p {
     font-size: 12px;
 }
+
+.containerBaixo {
+    display: flex;
+    gap: 16px;
+    margin: 0 20px 12px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.painelSensores,
+.painelHistorico {
+    background-color: #fffaf0;
+    border: 1px solid #e8dcc8;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.painelSensores {
+    flex: 1.4;
+    min-width: 420px;
+}
+
+.painelHistorico {
+    flex: 1;
+    min-width: 320px;
+}
+
+.painelTopo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.painelTopo h3 {
+    font-size: 18px;
+    color: #2b1409;
+}
+
+.painelTopo p,
+.painelTopo > span {
+    font-size: 12px;
+    color: #6b5444;
+}
+
+.painelTopo > span.badge {
+    font-size: 12px;
+}
+
+.tabelaScroll {
+    overflow-x: auto;
+}
+
+.tabelaSensores {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.tabelaSensores th {
+    background-color: #f3ede3;
+    text-align: left;
+    font-size: 11px;
+    font-weight: normal;
+    color: #6b5444;
+    padding: 10px 12px;
+}
+
+.tabelaSensores td {
+    padding: 12px;
+    border-bottom: 1px solid #e8dcc8;
+    color: #4a2c1d;
+}
+
+.tabelaSensores tbody tr {
+    cursor: pointer;
+}
+
+.tabelaSensores tbody tr:hover {
+    background-color: #f8f1e4;
+}
+
+.tabelaSensores tbody tr.selecionada {
+    background-color: #e8dcc8;
+}
+
+.tabelaSensores tbody tr.selecionada td:first-child {
+    border-left: 4px solid #5a3a2a;
+}
+
+.tabelaSensores .tag {
+    font-size: 10px;
+    color: #6b5444;
+    margin-left: 8px;
+}
+
+.tabelaSensores .hora {
+    display: block;
+    font-size: 10px;
+    color: #6b5444;
+}
+
+.tabelaSensores .vazio {
+    text-align: center;
+    color: #6b5444;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 14px;
+    border-radius: 999px;
+}
+
+.badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: currentColor;
+}
+
+.badge.critico {
+    background-color: #f6dfdb;
+    color: #b03a2e;
+}
+
+.badge.atencao {
+    background-color: #f4e8c4;
+    color: #8a6d1a;
+}
+
+.badge.normal {
+    background-color: #dfeadb;
+    color: #3b6b3a;
+}
+
+.tabelaRodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    font-size: 12px;
+    color: #6b5444;
+}
+
+.paginacao {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.paginacao button {
+    border: 0;
+    background-color: transparent;
+    color: #4a2c1d;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.paginacao button.ativo {
+    background-color: #5a3a2a;
+    color: #ffffff;
+}
+
+.paginacao button:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+.histValor {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+    border-top: 1px solid #e8dcc8;
+    padding-top: 12px;
+}
+
+.histValor small {
+    width: 100%;
+    font-size: 10px;
+    color: #6b5444;
+}
+
+.histValor strong {
+    font-size: 36px;
+    color: #2b1409;
+}
+
+.histValor em {
+    font-style: normal;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.histPeriodo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0;
+    font-size: 12px;
+}
+
+.histPeriodo button {
+    border: 1px solid #e8dcc8;
+    background-color: #fffaf0;
+    color: #4a2c1d;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 6px;
+}
+
+.histPeriodo button.ativo {
+    background-color: #e8dcc8;
+}
+
+.graficoEixo {
+    font-size: 11px;
+    color: #6b5444;
+}
+
+#grafico svg {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.histNota {
+    font-size: 11px;
+    color: #6b5444;
+    margin-top: 8px;
+}
+
+.notaRodape {
+    font-size: 11px;
+    color: #6b5444;
+    margin: 0 20px 20px;
+}
