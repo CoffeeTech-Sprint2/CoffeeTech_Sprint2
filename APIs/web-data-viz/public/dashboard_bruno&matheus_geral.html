@@ -205,5 +205,246 @@
   </body>
 </html>
 <script>
-    
+    // Dados ilustrativos dos 24 sensores (id, zona e última umidade em %)
+var sensores = [
+    { id: 'CT-001', zona: 'A', umid: 33.4 }, { id: 'CT-002', zona: 'B', umid: 35.1 },
+    { id: 'CT-003', zona: 'A', umid: 24.1 }, { id: 'CT-004', zona: 'C', umid: 31.8 },
+    { id: 'CT-005', zona: 'A', umid: 38.2 }, { id: 'CT-006', zona: 'B', umid: 29.6 },
+    { id: 'CT-007', zona: 'A', umid: 18.6 }, { id: 'CT-008', zona: 'C', umid: 36.7 },
+    { id: 'CT-009', zona: 'A', umid: 41.3 }, { id: 'CT-010', zona: 'B', umid: 32.5 },
+    { id: 'CT-011', zona: 'C', umid: 34.9 }, { id: 'CT-012', zona: 'B', umid: 19.2 },
+    { id: 'CT-013', zona: 'A', umid: 30.2 }, { id: 'CT-014', zona: 'B', umid: 39.4 },
+    { id: 'CT-015', zona: 'B', umid: 25.3 }, { id: 'CT-016', zona: 'C', umid: 28.8 },
+    { id: 'CT-017', zona: 'A', umid: 37.1 }, { id: 'CT-018', zona: 'C', umid: 22.4 },
+    { id: 'CT-019', zona: 'B', umid: 33.0 }, { id: 'CT-020', zona: 'A', umid: 23.7 },
+    { id: 'CT-021', zona: 'C', umid: 17.8 }, { id: 'CT-022', zona: 'C', umid: 35.6 },
+    { id: 'CT-023', zona: 'A', umid: 40.2 }, { id: 'CT-024', zona: 'B', umid: 21.9 }
+];
+
+var FASES = ['Floração', 'Frutificação', 'Granação'];
+var ORDEM = { 'Crítico': 0, 'Atenção': 1, 'Normal': 2 };
+var CLASSES = { 'Crítico': 'critico', 'Atenção': 'atencao', 'Normal': 'normal' };
+var ZONAS = ['', 'A', 'B', 'C', 'D'];
+var NIVEIS = ['', 'Crítico', 'Atenção', 'Normal'];
+var POR_PAGINA = 5;
+
+// Períodos do gráfico: quantidade de pontos e os textos do eixo X
+var PERIODOS = {
+    '24h': { pontos: 13, marcas: [0, 4, 8, 12], textos: ['Ontem, 10:30', '18:30', '02:30', '10:30'], nota: 'Leituras ilustrativas a cada 2 horas' },
+    '7d': { pontos: 8, marcas: [0, 2, 5, 7], textos: ['Há 7 dias', 'Há 5 dias', 'Há 2 dias', 'Hoje'], nota: 'Leituras ilustrativas diárias' },
+    '30d': { pontos: 30, marcas: [0, 10, 20, 29], textos: ['Há 30 dias', 'Há 20 dias', 'Há 10 dias', 'Hoje'], nota: 'Leituras ilustrativas diárias' }
+};
+
+var lista = [];
+var pagina = 1;
+var periodo = '24h';
+var selecionado = null;
+
+function situacao(umid) {
+    if (umid < 20) return 'Crítico';
+    if (umid < 26) return 'Atenção';
+    return 'Normal';
+}
+
+function formatar(numero) {
+    return numero.toFixed(1).replace('.', ',');
+}
+
+// completa os dados de cada sensor e ordena por prioridade (mais atenção primeiro)
+for (var i = 0; i < sensores.length; i++) {
+    sensores[i].numero = parseInt(sensores[i].id.slice(3));
+    sensores[i].status = situacao(sensores[i].umid);
+    sensores[i].fase = FASES[sensores[i].numero % 3];
+}
+sensores.sort(function (a, b) {
+    if (ORDEM[a.status] != ORDEM[b.status]) return ORDEM[a.status] - ORDEM[b.status];
+    return a.numero - b.numero;
+});
+
+function buscarSensor(id) {
+    for (var i = 0; i < sensores.length; i++) {
+        if (sensores[i].id == id) return sensores[i];
+    }
+    return null;
+}
+
+// ---------- filtros (usa os campos que já existem na página) ----------
+var selects = document.querySelectorAll('.selectfiltro select');
+var campoBusca = document.querySelector('.selectfiltro input');
+var escopo = document.querySelector('.divPaifiltro .selectfiltro:last-child');
+
+function filtrar() {
+    var zona = ZONAS[selects[0].selectedIndex];
+    var nivel = NIVEIS[selects[1].selectedIndex];
+    var busca = campoBusca.value.trim().toUpperCase();
+
+    lista = [];
+    for (var i = 0; i < sensores.length; i++) {
+        var s = sensores[i];
+        if (zona != '' && s.zona != zona) continue;
+        if (nivel != '' && s.status != nivel) continue;
+        if (busca != '' && s.id.indexOf(busca) == -1) continue;
+        lista.push(s);
+    }
+    pagina = 1;
+
+    escopo.querySelector('h4').textContent = zona == '' ? 'Escopo: todas as zonas' : 'Escopo: Zona ' + zona;
+    escopo.querySelector('p').textContent = lista.length + (lista.length == 1 ? ' sensor encontrado' : ' sensores encontrados');
+    document.getElementById('totalSensores').textContent = lista.length + (lista.length == 1 ? ' sensor' : ' sensores');
+
+    desenharTabela();
+}
+
+function limpar() {
+    selects[0].selectedIndex = 0;
+    selects[1].selectedIndex = 0;
+    campoBusca.value = '';
+    filtrar();
+}
+
+selects[0].onchange = filtrar;
+selects[1].onchange = filtrar;
+campoBusca.oninput = filtrar;
+
+// ---------- tabela ----------
+function criarLinha(s) {
+    var tr = document.createElement('tr');
+    tr.tabIndex = 0;
+    if (selecionado && s.id == selecionado.id) tr.className = 'selecionada';
+    tr.innerHTML =
+        '<td><strong>' + s.id + '</strong>' + (tr.className == 'selecionada' ? '<span class="tag">Selecionado</span>' : '') + '</td>' +
+        '<td>Zona ' + s.zona + '</td>' +
+        '<td><strong>' + formatar(s.umid) + '%</strong><span class="hora">Hoje, 10:30</span></td>' +
+        '<td><span class="badge ' + CLASSES[s.status] + '">' + s.status + '</span></td>';
+    tr.onclick = function () { selecionar(s.id); };
+    tr.onkeydown = function (e) { if (e.key == 'Enter') selecionar(s.id); };
+    return tr;
+}
+
+function desenharTabela() {
+    var corpo = document.getElementById('corpoTabela');
+    corpo.innerHTML = '';
+    var inicio = (pagina - 1) * POR_PAGINA;
+    var fim = Math.min(inicio + POR_PAGINA, lista.length);
+
+    if (lista.length == 0) {
+        corpo.innerHTML = '<tr><td colspan="4" class="vazio">Nenhum sensor encontrado.</td></tr>';
+        document.getElementById('faixaSensores').textContent = '0 sensores';
+    } else {
+        for (var i = inicio; i < fim; i++) {
+            corpo.appendChild(criarLinha(lista[i]));
+        }
+        document.getElementById('faixaSensores').textContent = (inicio + 1) + '–' + fim + ' de ' + lista.length + ' sensores';
+    }
+    desenharPaginacao();
+}
+
+function desenharPaginacao() {
+    var total = Math.ceil(lista.length / POR_PAGINA);
+    var caixa = document.getElementById('paginacao');
+    caixa.innerHTML = '';
+
+    var anterior = document.createElement('button');
+    anterior.textContent = 'Anterior';
+    anterior.disabled = pagina <= 1;
+    anterior.onclick = function () { irParaPagina(pagina - 1); };
+    caixa.appendChild(anterior);
+
+    for (var p = 1; p <= total; p++) {
+        caixa.appendChild(criarBotaoPagina(p));
+    }
+
+    var proxima = document.createElement('button');
+    proxima.textContent = 'Próxima';
+    proxima.disabled = pagina >= total;
+    proxima.onclick = function () { irParaPagina(pagina + 1); };
+    caixa.appendChild(proxima);
+}
+
+function criarBotaoPagina(numero) {
+    var botao = document.createElement('button');
+    botao.textContent = numero;
+    if (numero == pagina) botao.className = 'ativo';
+    botao.onclick = function () { irParaPagina(numero); };
+    return botao;
+}
+
+function irParaPagina(numero) {
+    pagina = numero;
+    desenharTabela();
+}
+
+// ---------- histórico individual ----------
+function selecionar(id) {
+    selecionado = buscarSensor(id);
+    desenharTabela();
+    desenharHistorico();
+}
+
+function gerarSerie(sensor, pontos) {
+    // série ilustrativa: termina na última umidade e vem "caindo" até ela
+    var queda = sensor.status == 'Crítico' ? 11 : sensor.status == 'Atenção' ? 6 : 2;
+    var valores = [];
+    for (var i = 0; i < pontos; i++) {
+        var progresso = i / (pontos - 1);
+        var onda = i == pontos - 1 ? 0 : Math.sin(i * 1.3 + sensor.numero) * 0.9;
+        var v = sensor.umid + queda * (1 - progresso) + onda;
+        valores.push(Math.min(39.5, Math.max(10.5, v)));
+    }
+    return valores;
+}
+
+function desenharGrafico(sensor) {
+    var cfg = PERIODOS[periodo];
+    var valores = gerarSerie(sensor, cfg.pontos);
+    var esq = 34, dir = 392, topo = 12, base = 150;
+
+    function posX(i) { return esq + (dir - esq) * i / (cfg.pontos - 1); }
+    function posY(v) { return topo + (40 - v) / 30 * (base - topo); }
+
+    var svg = '<svg viewBox="0 0 400 180" role="img" aria-label="Gráfico de umidade do sensor ' + sensor.id + '">';
+    for (var t = 10; t <= 40; t += 10) {
+        svg += '<line x1="' + esq + '" x2="' + dir + '" y1="' + posY(t) + '" y2="' + posY(t) + '" stroke="#e8dcc8" stroke-width="1"/>';
+        svg += '<text x="' + (esq - 6) + '" y="' + (posY(t) + 3) + '" font-size="9" fill="#6b5444" text-anchor="end">' + t + '</text>';
+    }
+    var pontos = '';
+    for (var i = 0; i < valores.length; i++) {
+        pontos += posX(i) + ',' + posY(valores[i]) + ' ';
+    }
+    svg += '<polyline points="' + pontos + '" fill="none" stroke="#4a2c1d" stroke-width="2"/>';
+    svg += '<circle cx="' + posX(valores.length - 1) + '" cy="' + posY(valores[valores.length - 1]) + '" r="4" fill="#4a2c1d"/>';
+    for (var m = 0; m < cfg.marcas.length; m++) {
+        var ancora = m == 0 ? 'start' : m == cfg.marcas.length - 1 ? 'end' : 'middle';
+        svg += '<text x="' + posX(cfg.marcas[m]) + '" y="170" font-size="9" fill="#6b5444" text-anchor="' + ancora + '">' + cfg.textos[m] + '</text>';
+    }
+    svg += '</svg>';
+    document.getElementById('grafico').innerHTML = svg;
+    document.getElementById('histNota').textContent = 'Uma série por vez · ' + cfg.nota;
+}
+
+function desenharHistorico() {
+    var s = selecionado;
+    document.getElementById('histSub').textContent = s.id + ' / Zona ' + s.zona + ' / ' + s.fase;
+    document.getElementById('histUmid').textContent = formatar(s.umid);
+    var etiqueta = document.getElementById('histBadge');
+    etiqueta.textContent = s.status;
+    etiqueta.className = 'badge ' + CLASSES[s.status];
+    desenharGrafico(s);
+}
+
+var botoesPeriodo = document.querySelectorAll('.histPeriodo button');
+for (var b = 0; b < botoesPeriodo.length; b++) {
+    botoesPeriodo[b].onclick = function () {
+        for (var k = 0; k < botoesPeriodo.length; k++) botoesPeriodo[k].className = '';
+        this.className = 'ativo';
+        periodo = this.getAttribute('data-periodo');
+        desenharHistorico();
+    };
+}
+
+// começa com o primeiro sensor da lista (o mais crítico) selecionado
+selecionado = buscarSensor('CT-007');
+filtrar();
+desenharHistorico();
+
 </script>
