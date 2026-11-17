@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span> DASHBOARD / VISÃO MULTISENSORES</span>
+        
+        <h1>Sua plantação, lado a lado.</h1>
+        <span>Acompnhe a umidade de vários sensores, sem alterar entre leituras.</span>
+
+        <span>Zona/Seção da plantação</span>
+        <select id="select_zonas">
+            <option value="1">sessão A</option>
+            <option value="2">sessão B</option>
+            <option value="3">sessão C</option>
+            <option value="4">sessão D</option>
+        </select>
+
+          <span>Nivel de atenção</span>
+        <select id="select_zonas">
+            <option value="1">Nível A</option>
+            <option value="2">Nível B</option>
+            <option value="3">Nível C</option>
+            <option value="4">Nível D</option>
+        </select>
+
+          <span>Ordenar por</span>
+        <select id="select_zonas">
+            <option value="1">Atenção A</option>
+            <option value="2">Atenção B</option>
+            <option value="3">Atenção C</option>
+            <option value="4">Atenção D</option>
+        </select>
+
+        <button onclick="horas()">24h</button>
+        <button onclick="dias()">7d</button>
+        <button onclick="mes()">30d</button>
+        <button onclick="limpar()">Limpar filtros</button>
+
+        <span>3 sensores em todas as zonas</span>
+</div>
+
+<div>
+    <h2>Sensores em paralelo</h2>
+    <span>Mesma escala (10-40%) e mesmo período em todos os gráficos</span>
+
+    <div>
+        <div>
+            <span>CT-001 <br>Zona A/Frutificação<br></span>
+            <span>18,6%</span>
+            <span>Última umidade, 10:30</span>
+        <canvas id="myChart"></canvas>
+            <span>Ontem, 10:30</span>
+            <span>Hoje, 10:30</span>
+        </div>
+
+        <div>
+            <span>CT-002 <br>Zona B/Frutificação<br></span>
+            <span>19,2%</span>
+            <span>Última umidade, 10:30</span>
+        <canvas id="myChart2"></canvas>
+            <span>Ontem, 10:30</span>
+            <span>Hoje, 10:30</span>
+        </div>
+
+        <div>
+            <span>CT-003 <br>Zona C/Frutificação<br></span>
+            <span>17,8%</span>
+            <span>Última umidade, 10:30</span>
+        <canvas id="myChart3"></canvas>
+            <span>Ontem, 10:30</span>
+            <span>Hoje, 10:30</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+<script>
+  const g = document.getElementById('myChart');
+
+  new Chart(g, {
+    type: 'line',
+    data: {
+     labels: ['Red', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: 'Histórico - últimas 24 horas',
+        data: [40, 30, 20, 10],
+        borderWidth: 2
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  const r = document.getElementById('myChart2');
+
+  new Chart(r, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: 'Histórico - últimas 24 horas',
+        data: [40, 30, 20, 10],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
+<script>
+  const a = document.getElementById('myChart3');
+
+  new Chart(a, {
+    type: 'line',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: 'Histórico - últimas 24 horas',
+       data: [40, 30, 20, 10],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
