@@ -38,7 +38,8 @@ function carregarKpis(){
         MIN(umidade) AS menorUmidade,
         MAX(umidade) AS maiorUmidade,
         ROUND(AVG(umidade), 1) AS mediaUmidade
-    FROM leitura;`
+    FROM leitura
+    WHERE DATE(dataHora) = CURDATE();`
     return database.executar(instrucaoSql)
 };
 
