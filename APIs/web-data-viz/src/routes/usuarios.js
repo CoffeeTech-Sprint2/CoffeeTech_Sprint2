@@ -12,4 +12,12 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/carregarKpis", function (req, res){
+    usuarioController.carregarKpis(req, res)
+})
+
+router.get("/carregarUmidadeAtual", function (req, res){
+    usuarioController.carregarUmidadeAtual(req, res)
+})
+
 module.exports = router;

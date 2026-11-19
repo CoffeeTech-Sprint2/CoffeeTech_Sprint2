@@ -109,7 +109,7 @@
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Umidade atual</span>
-          <span class="kpi-valor">39%</span>
+          <span class="kpi-valor" id="spanUmidadeAtual">%</span>
           <span class="kpi-ancora kpi_Max">Máximo desejável: 50%</span>
           <span class="kpi-ancora kpi_Min">Mínimo desejável: 40%</span>
         </div>
@@ -340,6 +340,21 @@
       function alertas(){
 
       }
+
+      function carregarUmidadeAtual(){
+        
+        fetch("/usuarios/carregarUmidadeAtual")
+        .then(function(resposta){
+          return resposta.json();
+        })
+        .then(function(dados){
+          document.getElementById("spanUmidadeAtual").innerHTML = dados.umidadeAtual + "%"
+        })
+        .catch(function(erro){
+          console.log(erro);
+        });
+      }
+      carregarUmidadeAtual();
     </script>
   </body>
 </html>
