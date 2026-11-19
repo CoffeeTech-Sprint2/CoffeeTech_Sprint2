@@ -45,28 +45,31 @@
       </nav>
     </header>
 
-    <h3 class="saudacao">Olá! <br>
-      Vamos para mais um dia?</h3>
+    <h3 class="saudacao">
+      Olá! <br />
+      Vamos para mais um dia?
+    </h3>
 
-
-        
     <div class="sltSensor">
-        
       <div class="faseCafe">
-          
-        <span class="nomeSensor" id="faseAtualNome">Fase atual: <b>dormência</b></span>
+        <span class="nomeSensor" id="faseAtualNome"
+          >Fase atual: <b>dormência</b></span
+        >
         <span class="nomeSensor">Selecione a fase atual da plantação:</span>
+        <!-- <select class="selectSensor" id="slct_fase" onchange="mudarLimiares()">
+          <option value="1">Crescimento Vegetativo</option>
+          <option value="2">Dormência</option> -->
         <select class="selectSensor" id="slct_fase" onchange="mudarLimiares()">
-        <option value="1">Crescimento Vegetativo</option>
-        <option value="2">Dormência</option>
-        <option value="3">Florada</option>
-        <option value="4">Granação</option>
-        <option value="5">Maturação</option>
-        <option value="6">Colheita</option>
+          <option value="1">Crescimento Vegetativo</option>
+          <option value="2" selected>Dormência</option>
+          <option value="3">Florada</option>
+          <option value="4">Granação</option>
+          <option value="5">Maturação</option>
+          <option value="6">Colheita</option>
         </select>
-        </div>
+      </div>
 
-        <!-- <div class="qualSensor">
+      <!-- <div class="qualSensor">
         <span class="nomeSensor">Sensor selecionado: <b> sentor leste</b></span>
         <span class="nomeSensor">Selecione o setor: </span>
         <select class="selectSensor">
@@ -74,12 +77,11 @@
         <option value="2">Sensor sul</option>
         </select>
         </div> -->
-        
-      </div>
+    </div>
 
-          <div class="alerta">
+    <!-- <div class="alerta">
       <div class="caixinhaAlerta">
-        <!-- Ícone de alerta vazado (somente contorno) -->
+
         <svg class="alerta-icone" viewBox="0 0 48 48" aria-hidden="true">
           <path d="M24 6 L44 40 H4 Z" />
           <path d="M24 19 V29" />
@@ -89,22 +91,36 @@
         <div class="alerta-texto">
           <p class="alerta-titulo">Umidade no limite mínimo</p>
           <p class="alerta-descricao">
-            O solo atingiu 39%, abaixo do nível mínimo recomendado para o café Arábica.
-            Considere irrigar a área nas próximas horas.
+            O solo atingiu 39%, abaixo do nível mínimo recomendado para o café
+            Arábica. Considere irrigar a área nas próximas horas.
           </p>
         </div>
 
         <span class="alerta-hora">Hoje, 20h00</span>
       </div>
+    </div> -->
+
+    <div class="alerta" id="alerta" style="display: none">
+      <div class="caixinhaAlerta">
+        <svg class="alerta-icone" viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M24 6 L44 40 H4 Z" />
+          <path d="M24 19 V29" />
+          <circle cx="24" cy="34" r="0.8" />
+        </svg>
+
+        <div class="alerta-texto">
+          <p class="alerta-titulo" id="alertaTitulo"></p>
+          <p class="alerta-descricao" id="alertaDescricao"></p>
+        </div>
+
+        <span class="alerta-hora" id="alertaHora"></span>
+      </div>
     </div>
+
     <main class="dashboard">
-      
-
       <div class="containerKPIs">
-
         <div class="tituloKPIs">
           <h3>KPIs</h3>
-          
         </div>
 
         <div class="caixinhaKPIs">
@@ -214,163 +230,319 @@
       Chart.defaults.font.size = 13;
       Chart.defaults.color = "#5a4a3f";
 
+      // let meuGrafico = new Chart(ctx, {
+      //   type: "line",
+      //   data: {
+      //     labels: horas,
+      //     datasets: [
+      //       {
+      //         label: "% de umidade",
+      //         data: [49, 48, 47, 47, 43, 45, 45, 41, 39],
+      //         borderColor: "rgb(89, 67, 44)",
+      //         backgroundColor: "rgba(89, 67, 44, 0.10)",
+      //         borderWidth: 3,
+      //         tension: 0.3,
+      //         // fill: true,
+      //         pointBackgroundColor: "rgb(104, 34, 2)",
+      //         pointBorderColor: "#ffffff",
+      //         pointBorderWidth: 2,
+      //         pointRadius: 5,
+      //         pointHoverRadius: 7,
+      //       },
+      //       {
+      //         // Âncora: linha pontilhada no mínimo
+      //         label: "Mínimo (" + MINIMO + "%)",
+      //         data: horas.map(() => MINIMO),
+      //         borderColor: "rgb(104, 34, 2)",
+      //         borderWidth: 2,
+      //         borderDash: [6, 6],
+      //         pointRadius: 0,
+      //         pointHoverRadius: 0,
+      //         fill: false,
+      //       },
+      //       {
+      //         // Âncora: linha pontilhada no máximo
+      //         label: "Máximo (" + MAXIMO + "%)",
+      //         data: horas.map(() => MAXIMO),
+      //         borderColor: "rgb(104, 34, 2)",
+      //         borderWidth: 2,
+      //         borderDash: [6, 6],
+      //         pointRadius: 0,
+      //         pointHoverRadius: 0,
+      //         fill: false,
+      //       },
+      //     ],
+      //   },
+      //   options: {
+      //     responsive: true,
+      //     interaction: { mode: "index", intersect: false },
+      //     plugins: {
+      //       legend: {
+      //         position: "bottom",
+      //         labels: { usePointStyle: true, boxWidth: 8, padding: 20 },
+      //       },
+      //       tooltip: {
+      //         backgroundColor: "rgb(89, 67, 44)",
+      //         titleFont: { family: '"Outfit", sans-serif', weight: "600" },
+      //         padding: 12,
+      //         cornerRadius: 8,
+      //       },
+      //     },
+      //     scales: {
+      //       y: {
+      //         max: 100,
+      //         beginAtZero: true,
+      //         ticks: { callback: (v) => v + "%" },
+      //         grid: { color: "rgba(89, 67, 44, 0.10)" },
+      //         border: { display: false },
+      //       },
+      //       x: {
+      //         grid: { display: false },
+      //         border: { color: "rgba(89, 67, 44, 0.25)" },
+      //       },
+      //     },
+      //   },
+      // });
+
       let meuGrafico = new Chart(ctx, {
         type: "line",
         data: {
-          labels: horas,
+          labels: [], // antes: horas fixas. Agora a API preenche
           datasets: [
             {
               label: "% de umidade",
-              data: [49, 48, 47, 47, 43, 45, 45, 41, 39],
-              borderColor: "rgb(89, 67, 44)",
-              backgroundColor: "rgba(89, 67, 44, 0.10)",
-              borderWidth: 3,
-              tension: 0.3,
-              // fill: true,
-              pointBackgroundColor: "rgb(104, 34, 2)",
-              pointBorderColor: "#ffffff",
-              pointBorderWidth: 2,
-              pointRadius: 5,
-              pointHoverRadius: 7,
+              data: [], // antes: [49, 48, 47...]
+              // ... (mantenha o resto: borderColor, tension, etc.)
             },
             {
-              // Âncora: linha pontilhada no mínimo
               label: "Mínimo (" + MINIMO + "%)",
-              data: horas.map(() => MINIMO),
-              borderColor: "rgb(104, 34, 2)",
-              borderWidth: 2,
-              borderDash: [6, 6],
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              fill: false,
+              data: [], // as linhas âncora também começam vazias
+              // ... (mantenha o resto)
             },
             {
-              // Âncora: linha pontilhada no máximo 
               label: "Máximo (" + MAXIMO + "%)",
-              data: horas.map(() => MAXIMO),
-              borderColor: "rgb(104, 34, 2)",
-              borderWidth: 2,
-              borderDash: [6, 6],
-              pointRadius: 0,
-              pointHoverRadius: 0,
-              fill: false,
+              data: [],
+              // ... (mantenha o resto)
             },
           ],
         },
-        options: {
-          responsive: true,
-          interaction: { mode: "index", intersect: false },
-          plugins: {
-            legend: {
-              position: "bottom",
-              labels: { usePointStyle: true, boxWidth: 8, padding: 20 },
-            },
-            tooltip: {
-              backgroundColor: "rgb(89, 67, 44)",
-              titleFont: { family: '"Outfit", sans-serif', weight: "600" },
-              padding: 12,
-              cornerRadius: 8,
-            },
-          },
-          scales: {
-            y: {
-              max: 100,
-              beginAtZero: true,
-              ticks: { callback: (v) => v + "%" },
-              grid: { color: "rgba(89, 67, 44, 0.10)" },
-              border: { display: false },
-            },
-            x: {
-              grid: { display: false },
-              border: { color: "rgba(89, 67, 44, 0.25)" },
-            },
-          },
-        },
+        // options continua igual
       });
 
-      function mudarLimiares(){
-        let faseAtual = slct_fase.value;
-        let nomeFaseAtual = "Dormência";
+      function carregarGrafico() {
+        fetch("/usuarios/carregarGrafico")
+          .then(function (resposta) {
+            return resposta.json();
+          })
+          .then(function (dados) {
+            // dados = [{hora: "19h00", umidade: 41}, ...]
+            // map() extrai só as horas e só as umidades em dois arrays separados
+            const labels = dados.map((d) => d.hora);
+            const valores = dados.map((d) => Number(d.umidade));
 
-        if(faseAtual == '1'){
-          MAXIMO = 80;
-          MINIMO = 60;
-          nomeFaseAtual = "Crescimento";
-        }else if(faseAtual == '2'){
-          MAXIMO = 50;
-          MINIMO = 40;
-          nomeFaseAtual = "Dormência";
-        }else if(faseAtual == '3'){
-          MAXIMO = 80;
-          MINIMO = 70;
-          nomeFaseAtual = "Florada";
-        }else if(faseAtual == '4'){
-          MAXIMO = 85;
-          MINIMO = 75;
-          nomeFaseAtual = "Granação";
-        }else if (faseAtual == '5'){
-          MAXIMO = 65;
-          MINIMO = 50;
-          nomeFaseAtual = "Maturação";        
-        }else{
-          MAXIMO = 50;
-          MINIMO = 40;
-          nomeFaseAtual = "Colheita";
-        }
-        faseAtualNome.innerHTML = `Fase atual: <b>${nomeFaseAtual}</b>`;
+            meuGrafico.data.labels = labels; // eixo X
+            meuGrafico.data.datasets[0].data = valores; // linha principal
 
-        document.querySelectorAll(".kpi_Min").forEach(el =>{
-          el.innerHTML = `Minimo desejável: ${MINIMO}%`;
+            // As linhas de mínimo e máximo precisam ter UM valor por ponto do eixo X,
+            // por isso usamos o tamanho de "labels" em vez da antiga constante "horas"
+            meuGrafico.data.datasets[1].data = labels.map(() => MINIMO);
+            meuGrafico.data.datasets[2].data = labels.map(() => MAXIMO);
+
+            meuGrafico.update("none"); // "none" = atualiza sem animar (melhor com refresh frequente)
+          })
+          .catch(function (erro) {
+            console.log(erro);
+          });
+      }
+
+      // Tabela de limites por fase: mais fácil de manter que vários if/else
+      const FASES = {
+        1: { nome: "Crescimento Vegetativo", min: 60, max: 80 },
+        2: { nome: "Dormência", min: 40, max: 50 },
+        3: { nome: "Florada", min: 70, max: 80 },
+        4: { nome: "Granação", min: 75, max: 85 },
+        5: { nome: "Maturação", min: 50, max: 65 },
+        6: { nome: "Colheita", min: 40, max: 50 },
+      };
+
+      function mudarLimiares() {
+        const fase = FASES[slct_fase.value];
+        MINIMO = fase.min;
+        MAXIMO = fase.max;
+
+        // Atualiza o texto "Fase atual"
+        document.getElementById("faseAtualNome").innerHTML =
+          `Fase atual: <b>${fase.nome}</b>`;
+
+        // Atualiza os textos de mínimo/máximo em todos os cards de KPI (agora com acento)
+        document.querySelectorAll(".kpi_Min").forEach((el) => {
+          el.innerHTML = `Mínimo desejável: ${MINIMO}%`;
         });
-
-        document.querySelectorAll(".kpi_Max").forEach(el =>{
+        document.querySelectorAll(".kpi_Max").forEach((el) => {
           el.innerHTML = `Máximo desejável: ${MAXIMO}%`;
         });
-        
-        meuGrafico.data.datasets[1].data = horas.map(() => MINIMO);
+
+        // Atualiza as linhas pontilhadas do gráfico usando a quantidade real de pontos
+        const qtd = meuGrafico.data.labels.length;
+        meuGrafico.data.datasets[1].data = Array(qtd).fill(MINIMO);
         meuGrafico.data.datasets[1].label = "Mínimo (" + MINIMO + "%)";
-        
-        meuGrafico.data.datasets[2].data = horas.map(() => MAXIMO);
+        meuGrafico.data.datasets[2].data = Array(qtd).fill(MAXIMO);
         meuGrafico.data.datasets[2].label = "Máximo (" + MAXIMO + "%)";
-        
         meuGrafico.update();
 
+        // A mudança de fase pode transformar uma leitura normal em alerta (ou o contrário)
+        alertas();
       }
 
-      function alertas(){
+      // function mudarLimiares() {
+      //   let faseAtual = slct_fase.value;
+      //   let nomeFaseAtual = "Dormência";
 
+      //   if (faseAtual == "1") {
+      //     MAXIMO = 80;
+      //     MINIMO = 60;
+      //     nomeFaseAtual = "Crescimento";
+      //   } else if (faseAtual == "2") {
+      //     MAXIMO = 50;
+      //     MINIMO = 40;
+      //     nomeFaseAtual = "Dormência";
+      //   } else if (faseAtual == "3") {
+      //     MAXIMO = 80;
+      //     MINIMO = 70;
+      //     nomeFaseAtual = "Florada";
+      //   } else if (faseAtual == "4") {
+      //     MAXIMO = 85;
+      //     MINIMO = 75;
+      //     nomeFaseAtual = "Granação";
+      //   } else if (faseAtual == "5") {
+      //     MAXIMO = 65;
+      //     MINIMO = 50;
+      //     nomeFaseAtual = "Maturação";
+      //   } else {
+      //     MAXIMO = 50;
+      //     MINIMO = 40;
+      //     nomeFaseAtual = "Colheita";
+      //   }
+      //   faseAtualNome.innerHTML = `Fase atual: <b>${nomeFaseAtual}</b>`;
+
+      //   document.querySelectorAll(".kpi_Min").forEach((el) => {
+      //     el.innerHTML = `Minimo desejável: ${MINIMO}%`;
+      //   });
+
+      //   document.querySelectorAll(".kpi_Max").forEach((el) => {
+      //     el.innerHTML = `Máximo desejável: ${MAXIMO}%`;
+      //   });
+
+      //   meuGrafico.data.datasets[1].data = horas.map(() => MINIMO);
+      //   meuGrafico.data.datasets[1].label = "Mínimo (" + MINIMO + "%)";
+
+      //   meuGrafico.data.datasets[2].data = horas.map(() => MAXIMO);
+      //   meuGrafico.data.datasets[2].label = "Máximo (" + MAXIMO + "%)";
+
+      //   meuGrafico.update();
+      // }
+
+      // Guarda os últimos valores recebidos, para reavaliar o alerta
+      // quando o usuário trocar a fase (sem esperar o próximo fetch)
+      let umidadeAtualValor = null;
+      let horaAtualValor = "";
+
+      function alertas() {
+        const caixa = document.getElementById("alerta");
+
+        // Ainda não chegou nenhuma leitura: não mostra nada
+        if (umidadeAtualValor === null) {
+          caixa.style.display = "none";
+          return;
+        }
+
+        if (umidadeAtualValor < MINIMO) {
+          // Abaixo do mínimo da fase atual
+          document.getElementById("alertaTitulo").innerHTML =
+            "Umidade abaixo do mínimo";
+          document.getElementById("alertaDescricao").innerHTML =
+            `O solo está com ${umidadeAtualValor}%, abaixo do mínimo de ${MINIMO}% para esta fase. ` +
+            `Considere irrigar a área nas próximas horas.`;
+          document.getElementById("alertaHora").innerHTML =
+            "Hoje, " + horaAtualValor;
+          caixa.style.display = "block";
+        } else if (umidadeAtualValor > MAXIMO) {
+          // Acima do máximo da fase atual
+          document.getElementById("alertaTitulo").innerHTML =
+            "Umidade acima do máximo";
+          document.getElementById("alertaDescricao").innerHTML =
+            `O solo está com ${umidadeAtualValor}%, acima do máximo de ${MAXIMO}% para esta fase. ` +
+            `Evite irrigar e verifique a drenagem.`;
+          document.getElementById("alertaHora").innerHTML =
+            "Hoje, " + horaAtualValor;
+          caixa.style.display = "block";
+        } else {
+          // Dentro da faixa ideal: esconde o alerta
+          caixa.style.display = "none";
+        }
       }
 
-      function carregarUmidadeAtual(){
-        
+      function carregarUmidadeAtual() {
         fetch("/usuarios/carregarUmidadeAtual")
-        .then(function(resposta){
-          return resposta.json();
-        })
-        .then(function(dados){
-          document.getElementById("spanUmidadeAtual").innerHTML = dados.umidadeAtual + "%"
-        })
-        .catch(function(erro){
-          console.log(erro);
-        });
-      };
+          .then(function (resposta) {
+            return resposta.json();
+          })
+          .then(function (dados) {
+            document.getElementById("spanUmidadeAtual").innerHTML =
+              dados.umidadeAtual + "%";
 
-      function carregarKpis(){
+            // Guarda os valores e reavalia o alerta com o dado novo
+            umidadeAtualValor = Number(dados.umidadeAtual);
+            horaAtualValor = dados.horaAtual;
+            alertas();
+          })
+          .catch(function (erro) {
+            console.log(erro);
+          });
+      }
+
+      function carregarUmidadeAtual() {
+        fetch("/usuarios/carregarUmidadeAtual")
+          .then(function (resposta) {
+            return resposta.json();
+          })
+          .then(function (dados) {
+            document.getElementById("spanUmidadeAtual").innerHTML =
+              dados.umidadeAtual + "%";
+          })
+          .catch(function (erro) {
+            console.log(erro);
+          });
+      }
+
+      function carregarKpis() {
         fetch("/usuarios/carregarKpis")
-        .then(function(resposta){
-          return resposta.json();
-        })
-        .then(function(dados){
-          document.getElementById("spanUmidadeMinima").innerHTML = dados.menorUmidade + "%"
-          document.getElementById("spanUmidadeMaxima").innerHTML = dados.maiorUmidade + "%"
-          document.getElementById("spanMediaUmidade").innerHTML = dados.mediaUmidade + "%"
-        })
-        .catch(function(erro){
-          console.log(erro);
-        });
-      };
-      carregarKpis();
-      carregarUmidadeAtual();
+          .then(function (resposta) {
+            return resposta.json();
+          })
+          .then(function (dados) {
+            document.getElementById("spanUmidadeMinima").innerHTML =
+              dados.menorUmidade + "%";
+            document.getElementById("spanUmidadeMaxima").innerHTML =
+              dados.maiorUmidade + "%";
+            document.getElementById("spanMediaUmidade").innerHTML =
+              dados.mediaUmidade + "%";
+          })
+          .catch(function (erro) {
+            console.log(erro);
+          });
+      }
+      // Junta tudo que precisa ser atualizado em uma função só
+      
+      function atualizarDashboard() {
+        mudarLimiares();
+        carregarUmidadeAtual(); // KPI "Umidade atual" (+ alerta)
+        carregarKpis(); // mínima, máxima e média do dia
+        carregarGrafico(); // pontos do gráfico
+      }
+
+      atualizarDashboard(); // carrega assim que a página abre
+      setInterval(atualizarDashboard, 5000); // repete a cada 5000 ms (5 s)
     </script>
   </body>
 </html>

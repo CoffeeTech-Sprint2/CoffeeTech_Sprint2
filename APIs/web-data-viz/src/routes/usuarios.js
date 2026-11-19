@@ -20,4 +20,7 @@ router.get("/carregarUmidadeAtual", function (req, res){
     usuarioController.carregarUmidadeAtual(req, res)
 })
 
+router.get("/carregarGrafico", function (req, res){
+    usuarioController.carregarGrafico(req, res)
+})
 module.exports = router;

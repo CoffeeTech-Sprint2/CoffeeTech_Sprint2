@@ -118,9 +118,28 @@ function carregarKpis(req, res){
     })
 }
 
+function carregarGrafico(req, res) {
+    usuarioModel.carregarGrafico()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                // Diferente das outras: devolve o ARRAY INTEIRO,
+                // pois o gráfico precisa de várias leituras, não só uma
+                res.json(resultado);
+            } else {
+                res.status(400).send("Nenhuma leitura encontrada!");
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+
 module.exports = {
     autenticar,
     cadastrar,
     carregarUmidadeAtual,
-    carregarKpis
+    carregarKpis,
+    carregarGrafico
 }

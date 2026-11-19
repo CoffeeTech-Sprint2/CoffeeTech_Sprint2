@@ -52,10 +52,44 @@ function buscarEmpresa(cnpj){
     return database.executar(buscarEmpresa)
 }
 
+// Busca as últimas 9 leituras para montar o gráfico
+function carregarGrafico() {
+    var instrucaoSql = `
+        SELECT
+            DATE_FORMAT(dataHora, '%Hh%i') AS hora,  -- formata como "20h00" para o eixo X
+            umidade
+        FROM (
+            -- Subquery: pega as 9 leituras MAIS RECENTES (ordem decrescente)
+            SELECT umidade, dataHora
+            FROM leitura
+            ORDER BY dataHora DESC
+            LIMIT 9
+        ) AS ultimas
+        -- Query externa: reordena da mais antiga para a mais nova,
+        -- porque o gráfico precisa da hora mais antiga à esquerda
+        ORDER BY dataHora ASC;`;
+    return database.executar(instrucaoSql);
+}
+
+// Versão atualizada: agora retorna também a hora da última leitura
+// function carregarUmidadeAtual() {
+//     var instrucaoSql = `
+//         SELECT
+//             umidade AS umidadeAtual,
+//             DATE_FORMAT(dataHora, '%Hh%i') AS horaAtual
+//         FROM leitura
+//         ORDER BY dataHora DESC
+//         LIMIT 1;`;
+//     return database.executar(instrucaoSql);
+// }
+
+
 module.exports = {
     autenticar,
     cadastrar,
     carregarUmidadeAtual,
     carregarKpis,
-    buscarEmpresa
+    buscarEmpresa,
+    carregarGrafico
 };
+
