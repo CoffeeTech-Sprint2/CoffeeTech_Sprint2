@@ -22,16 +22,6 @@ function cadastrar(nome, email, senha, fkEmpresa, telefone, celular) {
     return database.executar(instrucaoSql);
 }
 
-function carregarUmidadeAtual(){
-    var instrucaoSql = `
-    SELECT
-        umidade as umidadeAtual
-    FROM leitura
-    ORDER BY dataHora DESC
-    limit 1;`
-    return database.executar(instrucaoSql)
-};
-
 function carregarKpis(){
     var instrucaoSql = `
     SELECT
