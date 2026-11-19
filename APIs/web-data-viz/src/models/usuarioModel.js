@@ -42,6 +42,15 @@ function carregarKpis(){
     return database.executar(instrucaoSql)
 };
 
+function carregarUmidadeAtual(){
+    var instrucaoSql = `
+    SELECT 
+        umidade as umidadeAtual
+    FROM leitura
+        order by dataHora  DESC limit 1`;
+    return database.executar(instrucaoSql)
+}
+
 function buscarEmpresa(cnpj){
     var buscarEmpresa = `
         select idEmpresa from empresa 

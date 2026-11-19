@@ -87,6 +87,22 @@ function cadastrar(req, res) {
     
 }
 
+
+function carregarUmidadeAtual(req, res){
+    usuarioModel.carregarUmidadeAtual()
+        .then(function(resultado){
+            if(resultado.length > 0){
+                res.json(resultado[0]);
+            }else{
+                res.status(400).send("Nenhuma leitura encontrada!");
+            };
+        })
+        .catch(function(erro){
+            console.log(erro)
+            res.status(500).json(erro.sqlMessage)
+        })
+}
+
 function carregarKpis(req, res){
     usuarioModel.carregarKpis()
     .then(function(resultado){
