@@ -180,6 +180,7 @@
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
+        resposta.text().then((texto) => console.log("Mensagem do servidor:", texto));
 
         if (resposta.ok) {
           div_exibir.innerHTML = `<span style="color: green;">Cadastro realizado com sucesso! Redirecionando para o Login...</span>`;

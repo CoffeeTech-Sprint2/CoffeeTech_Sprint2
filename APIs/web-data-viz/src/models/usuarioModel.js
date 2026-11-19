@@ -42,9 +42,20 @@ function carregarKpis(){
     return database.executar(instrucaoSql)
 };
 
+function buscarEmpresa(cnpj){
+    var buscarEmpresa = `
+        select idEmpresa from empresa 
+        where cnpj = '${cnpj}' limit 1;
+        `;
+
+    console.log("Executando a instrução SQL: \n" + buscarEmpresa);
+    return database.executar(buscarEmpresa)
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     carregarUmidadeAtual,
-    carregarKpis
+    carregarKpis,
+    buscarEmpresa
 };
