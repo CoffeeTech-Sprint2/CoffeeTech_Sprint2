@@ -87,8 +87,24 @@ function cadastrar(req, res) {
     
 }
 
+function carregarKpis(req, res){
+    usuarioModel.carregarKpis()
+    .then(function(resultado){
+        if(resultado.length > 0){
+            res.json(resultado[0]);
+        }else{
+            res.status(400).send("Nenhuma leitura encontrada!");
+        };
+    })
+    .catch(function(erro){
+        console.log(erro)
+        res.status(500).json(erro.sqlMessage)
+    })
+}
 
 module.exports = {
     autenticar,
     cadastrar,
+    carregarUmidadeAtual,
+    carregarKpis
 }

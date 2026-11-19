@@ -37,7 +37,7 @@ function carregarKpis(){
     SELECT
         MIN(umidade) AS menorUmidade,
         MAX(umidade) AS maiorUmidade,
-        AVG(umidade) AS mediaUmidade
+        ROUND(AVG(umidade), 1) AS mediaUmidade
     FROM leitura;`
     return database.executar(instrucaoSql)
 };
