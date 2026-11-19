@@ -116,21 +116,21 @@
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Mínima do dia</span>
-          <span class="kpi-valor">39%</span>
+          <span class="kpi-valor" id="spanUmidadeMinima">%</span>
           <span class="kpi-ancora kpi_Max">Máximo desejável: 50%</span>
           <span class="kpi-ancora kpi_Min">Mínimo desejável: 40%</span>
         </div>
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Máxima do dia</span>
-          <span class="kpi-valor">49%</span>
+          <span class="kpi-valor" id="spanUmidadeMaxima">%</span>
           <span class="kpi-ancora kpi_Max">Máximo desejável: 50%</span>
           <span class="kpi-ancora kpi_Min">Mínimo desejável: 40%</span>
         </div>
 
         <div class="caixinhaKPIs">
           <span class="kpi-rotulo">Média do dia</span>
-          <span class="kpi-valor">44,8%</span>
+          <span class="kpi-valor" id="spanMediaUmidade">%</span>
           <span class="kpi-ancora kpi_Max">Máximo desejável: 50%</span>
           <span class="kpi-ancora kpi_Min">Mínimo desejável: 40%</span>
         </div>
@@ -353,7 +353,23 @@
         .catch(function(erro){
           console.log(erro);
         });
-      }
+      };
+
+      function carregarKpis(){
+        fetch("/usuarios/carregarKpis")
+        .then(function(resposta){
+          return resposta.json();
+        })
+        .then(function(dados){
+          document.getElementById("spanUmidadeMinima").innerHTML = dados.menorUmidade + "%"
+          document.getElementById("spanUmidadeMaxima").innerHTML = dados.maiorUmidade + "%"
+          document.getElementById("spanMediaUmidade").innerHTML = dados.mediaUmidade + "%"
+        })
+        .catch(function(erro){
+          console.log(erro);
+        });
+      };
+      carregarKpis();
       carregarUmidadeAtual();
     </script>
   </body>
