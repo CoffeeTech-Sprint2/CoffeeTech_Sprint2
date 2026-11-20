@@ -38,7 +38,7 @@ function carregarUmidadeAtual(){
     SELECT 
         umidade as umidadeAtual
     FROM leitura
-        order by dataHora  DESC limit 1`;
+        order by dataHora DESC limit 1`;
     return database.executar(instrucaoSql)
 }
 

@@ -324,9 +324,26 @@
               data: [],
               // ... (mantenha o resto)
             },
+            
           ],
         },
-        // options continua igual
+        options: {
+  responsive: true,
+  scales: {
+    y: {
+      min: 0,
+      max: 100,
+      beginAtZero: true,
+      ticks: { callback: (v) => v + "%" },
+      grid: { color: "rgba(89, 67, 44, 0.10)" },
+      border: { display: false },
+    },
+    x: {
+      grid: { display: false },
+      border: { color: "rgba(89, 67, 44, 0.25)" },
+    },
+  },
+},
       });
 
       function carregarGrafico() {
@@ -542,7 +559,7 @@
       }
 
       atualizarDashboard(); // carrega assim que a página abre
-      setInterval(atualizarDashboard, 5000); // repete a cada 5000 ms (5 s)
+      setInterval(atualizarDashboard, 1000); // repete a cada 5000 ms (5 s)
     </script>
   </body>
 </html>
